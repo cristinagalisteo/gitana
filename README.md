@@ -119,7 +119,7 @@ gitana.R --treeOne maximum_likelihood.tree --treeTwo maximum_parsimony.tree --tr
 # --output: name output file and select png as format
 ```
 
-<img src="https://github.com/user-attachments/assets/60af5892-742c-4246-8ab3-f36d24480714" width="60%" />
+<img src="https://github.com/user-attachments/assets/60af5892-742c-4246-8ab3-f36d24480714" width="75%" />
 
 We have a really nice basic plot ready for publish! OTU labels were perfectly edited and <sup>T</sup> added to the strain names. Bootstrap values under 70% were filtered out and the percentage was positioned next to the nodes. Black dots indicate common nodes for the three topologies based on maximum-likelihood, maximum-parsimony and neighbor-joining, respectively.
 
@@ -133,7 +133,7 @@ gitana.R --treeOne maximum_likelihood.tree --noedit
 # --noedit
 ```
 
-<img src="https://github.com/user-attachments/assets/11932333-85b8-43e2-aa2b-8adf9cc1c150" width="60%" />
+<img src="https://github.com/user-attachments/assets/11932333-85b8-43e2-aa2b-8adf9cc1c150" width="75%" />
 
 OTU numeration is represented in yellow and node numeration in blue.
 
@@ -150,7 +150,7 @@ gitana.R --treeOne maximum_likelihood.tree --treeTwo maximum_parsimony.tree --tr
 # --color: select the color for the OTU 14.
 ```
 
-<img src="https://github.com/user-attachments/assets/259ff16a-e7b5-4663-b0e2-e0221fc32246" width="60%" />
+<img src="https://github.com/user-attachments/assets/259ff16a-e7b5-4663-b0e2-e0221fc32246" width="75%" />
 
 OTU numeration is represented in yellow and node numeration in blue.
 
@@ -166,7 +166,7 @@ gitana.R --treeOne maximum_likelihood.tree --treeTwo maximum_parsimony.tree --tr
 # --scalexy: scale the other OTUs in the y and x axis 
 ```
 
-<img src="https://github.com/user-attachments/assets/8855a950-f6a1-4405-a2a3-f416c256a316" width="60%" />
+<img src="https://github.com/user-attachments/assets/8855a950-f6a1-4405-a2a3-f416c256a316" width="75%" />
 
 In this second version, we are focusing on the genus *Fodinibius* exclusively. We color all the members and name the cluster including all the species. Besides, we highlight the main species under study and the group of two species we are comparing it with. Last, we shrink (without collapsing) the rest of the OTU to remove attention from them.
 
@@ -229,7 +229,7 @@ hmap %>% aplot::insert_left(tr, width = 2)
 ggsave("aplot.png", width = 29.7, height = 21, units = "cm", dpi= 300)  
 ```
 
-<img src="https://github.com/user-attachments/assets/339733f3-ac19-40d9-a880-5f4511cdeee9" width="60%" />
+<img src="https://github.com/user-attachments/assets/339733f3-ac19-40d9-a880-5f4511cdeee9" width="75%" />
 
 gitana.R tree is plotted at the left. The presence (yellow) and absence (white) of genes is at the right, sorted by tree topology.
 
@@ -250,7 +250,7 @@ gitana.R --treeOne maximum_likelihood.tree --root 29
 gitana.R --treeOne rerooted_maximum_likelihood_node29_0.021415.tree --treeTwo maximum_parsimony.tree --treeThree neighbor_joining.tree --file infoStrains.tsv -l -i -s 0.5 --bar 0.05 -y 0.3 -x -0.01 --output rerooted_maximum_likelihood_node29_0.021415.png
 ```
 
-<img src="https://github.com/user-attachments/assets/372d0b83-929f-4dc8-a56a-f8ca6fc44eb4" width="60%" />
+<img src="https://github.com/user-attachments/assets/372d0b83-929f-4dc8-a56a-f8ca6fc44eb4" width="75%" />
 
 ```         
 # The position can be manually select with --position
@@ -259,4 +259,4 @@ gitana.R --treeOne maximum_likelihood.tree --root 29 --position 0.01
 gitana.R --treeOne rerooted_maximum_likelihood_node29_0.01.tree --treeTwo maximum_parsimony.tree --treeThree neighbor_joining.tree --file infoStrains.tsv -l -i -s 0.55 --bar 0.05 -y 0.3 -x -0.01 --output rerooted_maximum_likelihood_node29_0.01.png
 ```
 
-<img src="https://github.com/user-attachments/assets/091d8ccf-139c-48f9-8a05-5d71c08d7f61" width="60%" />
+<img src="https://github.com/user-attachments/assets/091d8ccf-139c-48f9-8a05-5d71c08d7f61" width="75%" />
