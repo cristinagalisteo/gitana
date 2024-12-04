@@ -100,7 +100,7 @@ gitana.R --treeOne maximum_likelihood.tree
 # By default, only bootstrap values above 70% are displayed. 
 ```
 
-<img src="https://github.com/user-attachments/assets/9e4d140c-92e2-4356-bc78-584217598a4b" width="60%" />
+<img src="https://github.com/user-attachments/assets/9e4d140c-92e2-4356-bc78-584217598a4b" width="75%" />
 
 We can easily plot our tree file using a single argument, which is quite useful for quick peek of the result. This is similar to the visualization with other popular tools. Clearly, it is not suitable for publication.
 
