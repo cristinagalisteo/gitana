@@ -2,7 +2,7 @@
 
 Phylogenetic trees are essential diagrams used in different sciences, such as evolutionary biology or taxonomy, and they depict the relationships between a given set of taxa from a common ancestor. So far, multitude of tools have already been developed to infer phylogenies, and even more to visualize the resulting trees. However, edition of graphical plots to obtain ready-to-publish figures is still a major issue. Most available tools do not take into consideration important aspects in prokaryotic nomenclature, as the use of italic face for taxon names or the <sup>T</sup> superscript that must be displayed after type strain designation, at least not automatically. The lack of available tools to achieve these tasks is challenging for scientists, since manual formatting of taxon information is very time-consuming.
 
-Here we present a tool known as **‘gitana.R’ (phyloGenetic Imaging Tool for Adjusting Nodes and other Arrangements)**, designed to fill in the gap left by other programs and to automate the creation of trees with standard in nomenclature. Moreover, 'gitana.R' allows node comparisons among phylogenies constructed using different treeing algorithms to denote conserved branches. Furthermore, additional useful options were included, as setting a new root or unrooting the tree, rotating nodes, highlighting selected clades or taxa, choosing of output format for figures, among others.
+Here we present a tool known as **'gitana.R' (phyloGenetic Imaging Tool for Adjusting Nodes and other Arrangements)**, designed to fill in the gap left by other programs and to automate the creation of trees with standard in nomenclature. Moreover, 'gitana.R' allows node comparisons among phylogenies constructed using different treeing algorithms to denote conserved branches. Furthermore, additional useful options were included, as setting a new root or unrooting the tree, rotating nodes, highlighting selected clades or taxa, choosing of output format for figures, among others.
 
 'gitana.R' is based on the most popular R libraries ('ape', 'ggtree', 'phytools') for phylogeny and mixes them to create an interactive R script with multitude of optional arguments that allows the imaging of very simple but good looking trees to others more sophisticated.
 
@@ -100,9 +100,7 @@ gitana.R --treeOne maximum_likelihood.tree
 # By default, only bootstrap values above 70% are displayed. 
 ```
 
-::: {style="text-align: center;"}
-![](/mnt/data-lvm/users/galisteo/servidor/gitana/ex_plot/mypdf.jpg){#id .class width="60%" height="60%"}
-:::
+<img src="https://github.com/user-attachments/assets/9e4d140c-92e2-4356-bc78-584217598a4b" width="60%" />
 
 We can easily plot our tree file using a single argument, which is quite useful for quick peek of the result. This is similar to the visualization with other popular tools. Clearly, it is not suitable for publication.
 
@@ -121,9 +119,7 @@ gitana.R --treeOne maximum_likelihood.tree --treeTwo maximum_parsimony.tree --tr
 # --output: name output file and select png as format
 ```
 
-::: {style="text-align: center;"}
-![](/mnt/data-lvm/users/galisteo/servidor/gitana/ex_plot/basic.png){.class width="60%" height="60%"}
-:::
+<img src="https://github.com/user-attachments/assets/60af5892-742c-4246-8ab3-f36d24480714" width="60%" />
 
 We have a really nice basic plot ready for publish! OTU labels were perfectly edited and <sup>T</sup> added to the strain names. Bootstrap values under 70% were filtered out and the percentage was positioned next to the nodes. Black dots indicate common nodes for the three topologies based on maximum-likelihood, maximum-parsimony and neighbor-joining, respectively.
 
@@ -137,9 +133,7 @@ gitana.R --treeOne maximum_likelihood.tree --noedit
 # --noedit
 ```
 
-::: {style="text-align: center;"}
-![](/mnt/data-lvm/users/galisteo/servidor/gitana/ex_plot/maximum_likelihood_noedit.png){.class width="60%" height="60%"}
-:::
+<img src="https://github.com/user-attachments/assets/11932333-85b8-43e2-aa2b-8adf9cc1c150" width="60%" />
 
 OTU numeration is represented in yellow and node numeration in blue.
 
@@ -156,9 +150,7 @@ gitana.R --treeOne maximum_likelihood.tree --treeTwo maximum_parsimony.tree --tr
 # --color: select the color for the OTU 14.
 ```
 
-::: {style="text-align: center;"}
-![](/mnt/data-lvm/users/galisteo/servidor/gitana/ex_plot/pretty.png){.class width="60%" height="60%"}
-:::
+<img src="https://github.com/user-attachments/assets/259ff16a-e7b5-4663-b0e2-e0221fc32246" width="60%" />
 
 OTU numeration is represented in yellow and node numeration in blue.
 
@@ -174,9 +166,7 @@ gitana.R --treeOne maximum_likelihood.tree --treeTwo maximum_parsimony.tree --tr
 # --scalexy: scale the other OTUs in the y and x axis 
 ```
 
-::: {style="text-align: center;"}
-![](/mnt/data-lvm/users/galisteo/servidor/gitana/ex_plot/pretty2.png){.class width="60%" height="60%"}
-:::
+<img src="https://github.com/user-attachments/assets/8855a950-f6a1-4405-a2a3-f416c256a316" width="60%" />
 
 In this second version, we are focusing on the genus *Fodinibius* exclusively. We color all the members and name the cluster including all the species. Besides, we highlight the main species under study and the group of two species we are comparing it with. Last, we shrink (without collapsing) the rest of the OTU to remove attention from them.
 
@@ -239,9 +229,7 @@ hmap %>% aplot::insert_left(tr, width = 2)
 ggsave("aplot.png", width = 29.7, height = 21, units = "cm", dpi= 300)  
 ```
 
-::: {style="text-align: center;"}
-![](/mnt/data-lvm/users/galisteo/servidor/gitana/ex_plot/aplot.png){.class width="70%" height="70%"}
-:::
+<img src="https://github.com/user-attachments/assets/339733f3-ac19-40d9-a880-5f4511cdeee9" width="60%" />
 
 gitana.R tree is plotted at the left. The presence (yellow) and absence (white) of genes is at the right, sorted by tree topology.
 
@@ -262,9 +250,7 @@ gitana.R --treeOne maximum_likelihood.tree --root 29
 gitana.R --treeOne rerooted_maximum_likelihood_node29_0.021415.tree --treeTwo maximum_parsimony.tree --treeThree neighbor_joining.tree --file infoStrains.tsv -l -i -s 0.5 --bar 0.05 -y 0.3 -x -0.01 --output rerooted_maximum_likelihood_node29_0.021415.png
 ```
 
-::: {style="text-align: center;"}
-![](/mnt/data-lvm/users/galisteo/servidor/gitana/ex_plot/rerooted_maximum_likelihood_node29_0.021415.png){.class width="70%" height="70%"}
-:::
+<img src="https://github.com/user-attachments/assets/372d0b83-929f-4dc8-a56a-f8ca6fc44eb4" width="60%" />
 
 ```         
 # The position can be manually select with --position
@@ -273,6 +259,4 @@ gitana.R --treeOne maximum_likelihood.tree --root 29 --position 0.01
 gitana.R --treeOne rerooted_maximum_likelihood_node29_0.01.tree --treeTwo maximum_parsimony.tree --treeThree neighbor_joining.tree --file infoStrains.tsv -l -i -s 0.55 --bar 0.05 -y 0.3 -x -0.01 --output rerooted_maximum_likelihood_node29_0.01.png
 ```
 
-::: {style="text-align: center;"}
-![](/mnt/data-lvm/users/galisteo/servidor/gitana/ex_plot/rerooted_maximum_likelihood_node29_0.01.png){.class width="70%" height="70%"}
-:::
+<img src="https://github.com/user-attachments/assets/091d8ccf-139c-48f9-8a05-5d71c08d7f61" width="60%" />
