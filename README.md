@@ -4,7 +4,7 @@ Phylogenetic trees are essential diagrams used in different sciences, such as ev
 
 Here we present a tool known as **‘gitana.R’ (phyloGenetic Imaging Tool for Adjusting Nodes and other Arrangements)**, designed to fill in the gap left by other programs and to automate the creation of trees with standard in nomenclature. Moreover, 'gitana.R' allows node comparisons among phylogenies constructed using different treeing algorithms to denote conserved branches. Furthermore, additional useful options were included, as setting a new root or unrooting the tree, rotating nodes, highlighting selected clades or taxa, choosing of output format for figures, among others.
 
-'gitana.R' is based on the most popular R libraries ('ape', 'ggtree', 'phytools') and mixes them to create an interactive R script with multitude of optional arguments that allows the imaging of very simple but good looking trees to others more sophisticated.
+'gitana.R' is based on the most popular R libraries ('ape', 'ggtree', 'phytools') for phylogeny and mixes them to create an interactive R script with multitude of optional arguments that allows the imaging of very simple but good looking trees to others more sophisticated.
 
 ## R packages
 
