@@ -7,7 +7,6 @@
 
 ############### LIBRARIES ############### 
 suppressMessages({
-  library(treeio)
   library(ggtree)   # Visualization and annotation of phylogenetic trees, based on 'ggplot2' library.
   library(phytools) # Node comparison on phylogenetic trees.
   library(ape)      # Plot node and OTU numeration.
