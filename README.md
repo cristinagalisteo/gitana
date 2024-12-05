@@ -6,11 +6,11 @@ Here we present a tool known as **'gitana.R' (phyloGenetic Imaging Tool for Adju
 
 'gitana.R' is based on the most popular R libraries ('ape', 'ggtree', 'phytools') for phylogeny and mixes them to create an interactive R script with multitude of optional arguments that allows the imaging of very simple but good looking trees to others more sophisticated.
 
-## R packages
+## Installation and R packages
 
-'gitana.R' was created on **R version 4.4.0** (2024-04-24).
+'gitana.R' runs in **Linux/Windows/Mac** systems where R software (https://cran.r-project.org) and the following R packages had been previously installed.
 
-The following packages are needed:
+It was built on **R version 4.4.0** (2024-04-24).
 
 | Library  | Recommended version (\*) | Link                                                |
 |:--------:|:------------------------:|:----------------------------------------------------|
