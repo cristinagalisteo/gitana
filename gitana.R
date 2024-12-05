@@ -6,11 +6,6 @@
 # @Version: 0.1
 
 ############### LIBRARIES ############### 
-requiredPackages <- c("treeio", "ggtree","phytools", "ape", "optparse", "ggtext", "ggplot2")
-for (package in requiredPackages) { # Install packages if not yet installed
-  if (!requireNamespace(package, quietly = TRUE))
-    install.packages(package)
-}
 suppressMessages({
   library(treeio)
   library(ggtree)   # Visualization and annotation of phylogenetic trees, based on 'ggplot2' library.
