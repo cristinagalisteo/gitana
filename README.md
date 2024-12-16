@@ -119,7 +119,7 @@ gitana.R --treeOne maximum_likelihood.tree --treeTwo maximum_parsimony.tree --tr
 # --output: name output file and select png as format
 ```
 
-<img src="https://github.com/user-attachments/assets/60af5892-742c-4246-8ab3-f36d24480714" width="75%" />
+<img src="https://github.com/user-attachments/assets/bbbd09e8-2f66-45e2-afcc-6cd0d13f38ac" width="75%" />
 
 We have a really nice basic plot ready for publish! OTU labels were perfectly edited and <sup>T</sup> added to the strain names. Bootstrap values under 70% were filtered out and the percentage was positioned next to the nodes. Black dots indicate common nodes for the three topologies based on maximum-likelihood, maximum-parsimony and neighbor-joining, respectively.
 
