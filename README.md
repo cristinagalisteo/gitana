@@ -54,7 +54,7 @@ Example:
 -   Plotted tree. By default, pdf format, maximum quality (dpi 300) and A4 size (or larger for \>= 50 OTUs).
 -   Rerooted tree (`--root`) plus unedited plotted tree.
 -   Unedited tree (`--noedit`).
--   R objects (`--save_object`). To combine the plotted tree with other figures.
+-   R objects (`--Robject`). To combine the plotted tree with other figures.
 -   Log file with used arguments.
 
 ## Arguments
@@ -64,7 +64,7 @@ Example:
 -   **`-n/--treeThree`**: Third tree to compare topology with treeOne and treeTwo.
 -   **`-f/--file`**: Data file with information about the tree taxa (species and strain names, accession numbers).
 -   **`-o/--output`**: Name and extension (pdf \| jpg \| tiff \| ...) of the plotted tree. Default: treeOne.pdf.
--   **`--save_object`**: Save plotted tree as R object (.rds). Default: `FALSE`.
+-   **`--Robject`**: Save plotted tree as R object (.rds). Default: `FALSE`.
 -   **`--noedit`**: Plot a basic version of the tree with raw names, nodes and tips numeration. Very useful to know node number for edit options.
 -   **`-i/--superindex`**: <sup>T</sup> appears behind the strain name (eg.: CECT 7585<sup>T</sup>) for OTUs with "type" in the fifth column of the data file. Default: `FALSE`.
 -   **`--layout`**: Plot design. Options: rectangular (*default*) \| slanted \| circular \| radial \| unrooted \| equal_angle \| daylight.
@@ -174,11 +174,11 @@ In this second version, we are focusing on the genus *Fodinibius* exclusively. W
 
 #### Advance figure from our plot ready for publication
 
-gitana.R generates high quality figures without any coding In R. However, it is more limited than working directly with the libraries in R. The argument `--save_object` export the result of gitana.R. That way, it is possible to explore are plot options for phylogenetic trees, or combine it with other plots.
+gitana.R generates high quality figures without any coding In R. However, it is more limited than working directly with the libraries in R. The argument `--Robject` export the result of gitana.R. That way, it is possible to explore are plot options for phylogenetic trees, or combine it with other plots.
 
 ```         
-gitana.R --treeOne maximum_likelihood.tree --treeTwo maximum_parsimony.tree --treeThree neighbor_joining.tree --file infoStrains.tsv -l -i -s 0.5 --bar 0.05 -y 0.3 -x -0.01 --output basic.png --save_object
-# --save_object: save as R object as 'maximum_likelihood.rds'
+gitana.R --treeOne maximum_likelihood.tree --treeTwo maximum_parsimony.tree --treeThree neighbor_joining.tree --file infoStrains.tsv -l -i -s 0.5 --bar 0.05 -y 0.3 -x -0.01 --output basic.png --Robject
+# --Robject: save as R object as 'maximum_likelihood.rds'
 ```
 
 The RDS object can be load in a new R script:
