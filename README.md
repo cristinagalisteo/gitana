@@ -42,10 +42,11 @@ Example:
 | Column1  | Column2  |           Column3            | Column4 | Column5 |
 |:--------:|:--------:|:----------------------------:|:-------:|:-------:|
 | ZZZ16450 | MF618255 | Rhodohalobacter barkolensis  |  15182  |  type   |
-| H6XSpe11 | MF782427 | "Aliifodinibius salipaludis" |  WN023  |  type   |
+| H6XSpe11 | MF782427 | '"Aliifodinibius salipaludis"' |  WN023  |  type   |
 | H6XSedim | JQ923476 |     Fodinibius sediminis     | YIM J21 |         |
 | H6XRoseu | JQ923475 |      Fodinibius roseus       | YIM D15 |  type   |
 |   ...    |   ...    |             ...              |   ...   |   ...   |
+Note: Double quatation marks are needed if we want them plotted.
 
 ## Output files
 
