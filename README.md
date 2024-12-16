@@ -46,7 +46,7 @@ Example:
 | H6XSedim | JQ923476 |     Fodinibius sediminis     | YIM J21 |         |
 | H6XRoseu | JQ923475 |      Fodinibius roseus       | YIM D15 |  type   |
 |   ...    |   ...    |             ...              |   ...   |   ...   |
-Note: Double quatation marks are needed if we want them plotted.
+\Note: Double quatation marks are needed if we want them plotted.
 
 ## Output files
 
