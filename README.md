@@ -150,7 +150,7 @@ gitana.R --treeOne maximum_likelihood.tree --treeTwo maximum_parsimony.tree --tr
 # --color: select the color for the OTU 14.
 ```
 
-<img src="https://github.com/user-attachments/assets/259ff16a-e7b5-4663-b0e2-e0221fc32246" width="75%" />
+<img src="https://github.com/user-attachments/assets/6cf80315-62cf-4a37-b461-b8216d588cab" width="75%" />
 
 OTU numeration is represented in yellow and node numeration in blue.
 
