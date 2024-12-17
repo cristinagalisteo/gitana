@@ -168,7 +168,7 @@ gitana.R --treeOne maximum_likelihood.tree --treeTwo maximum_parsimony.tree --tr
 # --scalexy: scale the other OTUs in the y and x axis 
 ```
 
-<img src="https://github.com/user-attachments/assets/8855a950-f6a1-4405-a2a3-f416c256a316" width="75%" />
+<img src="https://github.com/user-attachments/assets/47ff2c59-5c9f-4d12-a710-044b9dc15589" width="75%" />
 
 In this second version, we are focusing on the genus *Fodinibius* exclusively. We color all the members and name the cluster including all the species. Besides, we highlight the main species under study and the group of two species we are comparing it with. Last, we shrink (without collapsing) the rest of the OTU to remove attention from them.
 
