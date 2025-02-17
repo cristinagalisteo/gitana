@@ -10,16 +10,16 @@ Here we present a tool known as **'gitana.R' (phyloGenetic Imaging Tool for Adju
 
 'gitana.R' runs in **Linux/Windows/Mac** systems where R software (https://cran.r-project.org) and the following R packages had been previously installed.
 
-It was built on **R version 4.4.0** (2024-04-24).
+It was built on **R version 4.4.2**.
 
 | Library  | Recommended version (\*) | Link                                                |
 |:--------:|:------------------------:|:----------------------------------------------------|
-|   ape    |          \>=5.8          | <https://cran.r-project.org/web/packages/ape/>      |
+|   ape    |          \>=5.8.1        | <https://cran.r-project.org/web/packages/ape/>      |
 | ggplot2  |         \>=3.5.1         | <https://cran.r-project.org/web/packages/ggplot2/>  |
 |  ggtext  |         \>=0.1.2         | <https://cran.r-project.org/package=ggtext>         |
-|  ggtree  |        \>=3.12.0         | <https://guangchuangyu.github.io/software/ggtree/>  |
+|  ggtree  |        \>=3.14.0         | <https://guangchuangyu.github.io/software/ggtree/>  |
 | optparse |         \>=1.7.5         | <https://cran.r-project.org/web/packages/optparse/> |
-| phytools |         \>=2.1-1         | <https://cran.r-project.org/web/packages/phytools/> |
+| phytools |         \>=2.4.4         | <https://cran.r-project.org/web/packages/phytools/> |
 
 (\*) Different versions has been tested with success, but some of the optional graphic modifications may behave funny.
 
@@ -84,7 +84,7 @@ Example:
 -   **`--offset`**: Set position of `--Bclades` label.
 -   **`--fontsize`**: Tip labels font size. Default: `6`.
 -   **`--nodesize`**: Node labels (bootstrap) and bar font size. Default: `5`.
--   **`--bar_width`**: Bar size. Default: automatically set.
+-   **`--bar`**: Bar size. Default: automatically set.
 -   **`-W/--output_width`**: Plot width (cm). Default: `29.7` (A4).
 -   **`-H/--output_height`**: Plot height (cm). Default: `21` (A4).
 -   **`-s/--tree_size`**: Plot is adapted to the sheet size without considering the tip labels. Usually, it is necessary to set it. Lower values expand the tree along the X axis.It is recommended to use bigger sizes for circular layouts
