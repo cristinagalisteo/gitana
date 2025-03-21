@@ -1,14 +1,26 @@
-# gitana.R: phyloGenetic Imaging Tool for Adjusting Nodes and other Arrangements
+---
+output:
+  html_document: default
+  pdf_document: default
+---
+# gitana: phyloGenetic Imaging Tool for Adjusting Nodes and other Arrangements
 
-Phylogenetic trees are essential diagrams used in different sciences, such as evolutionary biology or taxonomy, and they depict the relationships between a given set of taxa from a common ancestor. So far, multitude of tools have already been developed to infer phylogenies, and even more to visualize the resulting trees. However, edition of graphical plots to obtain ready-to-publish figures is still a major issue. Most available tools do not take into consideration important aspects in prokaryotic nomenclature, as the use of italic face for taxon names or the <sup>T</sup> superscript that must be displayed after type strain designation, at least not automatically. The lack of available tools to achieve these tasks is challenging for scientists, since manual formatting of taxon information is very time-consuming.
+Phylogenetic trees are essential diagrams used in various scientific disciplines, such as evolutionary biology or taxonomy. 
+They depict the relationships between a specified set of taxa from a common ancestor. 
+Numerous tools have already been developed to infer phylogenies, and even more to visualize the resulting trees. 
+Nevertheless, a persistent challenge persists in the edition of graphical plots to obtain figures suitable for publication. 
+The existing tools often neglect crucial aspects of nomenclature, as the use of italicization taxon names or the <sup>T</sup> superscript following type strain/specimen designations. 
+The lack of available tools to achieve these issues presents a significant challange for scientists, as manual formatting of taxa information is a laborious and time-consuming task.
 
-Here we present a tool known as **'gitana.R' (phyloGenetic Imaging Tool for Adjusting Nodes and other Arrangements)**, designed to fill in the gap left by other programs and to automate the creation of trees with standard in nomenclature. Moreover, 'gitana.R' allows node comparisons among phylogenies constructed using different treeing algorithms to denote conserved branches. Furthermore, additional useful options were included, as setting a new root or unrooting the tree, rotating nodes, highlighting selected clades or taxa, choosing of output format for figures, among others.
+Here we present a tool known as **'gitana' (phyloGenetic Imaging Tool for Adjusting Nodes and other Arrangements)**, designed to fill in the gap left by other programs to automate the creation of trees with standard in nomenclature. 
+Furthermore, 'gitana' is able to perform node comparisons among phylogenies (e.g., constructed using different treeing algorithms) to denote conserved branches. 
+Multitude of useful functionalities are offered, such as rerooting or unrooting a tree, rotating nodes, highlighting selected clades or taxa, or choosing the output format for figures, among others.
 
-'gitana.R' is based on the most popular R libraries ('ape', 'ggtree', 'phytools') for phylogeny and mixes them to create an interactive R script with multitude of optional arguments that allows the imaging of very simple but good looking trees to others more sophisticated.
+'gitana' is based on the most popular R libraries for phylogeny ('ape', 'ggtree', 'phytools') and combines them to create an interactive R script ('gitana.R') with large selection of optional arguments that allows the imaging of very simple but good looking trees to others more sophisticated.
 
 ## Installation and R packages
 
-'gitana.R' runs in **Linux/Windows/Mac** systems where R software (https://cran.r-project.org) and the following R packages had been previously installed.
+'gitana.R' runs in **Linux/Windows/Mac** systems where R software (https://cran.r-project.org) and the following R packages must be previously installed.
 
 It was built on **R version 4.4.2**.
 
@@ -16,178 +28,474 @@ It was built on **R version 4.4.2**.
 |:--------:|:------------------------:|:----------------------------------------------------|
 |   ape    |          \>=5.8.1        | <https://cran.r-project.org/web/packages/ape/>      |
 | ggplot2  |         \>=3.5.1         | <https://cran.r-project.org/web/packages/ggplot2/>  |
-|  ggtext  |         \>=0.1.2         | <https://cran.r-project.org/package=ggtext>         |
+|  ggtext  |         \>=0.1.2         | <https://cran.r-project.org/web/packages/ggtext/>   |
 |  ggtree  |        \>=3.14.0         | <https://guangchuangyu.github.io/software/ggtree/>  |
 | optparse |         \>=1.7.5         | <https://cran.r-project.org/web/packages/optparse/> |
 | phytools |         \>=2.4.4         | <https://cran.r-project.org/web/packages/phytools/> |
 
-(\*) Different versions has been tested with success, but some of the optional graphic modifications may behave funny.
+(\*) Different versions has been tested with success, but some of the optional graphic modifications might produce unusual results.\
+
+Authors recommend installation with conda: 
+```
+conda install -c conda-forge -c bioconda r-base=4.2.2 r-ape r.ggplot2 r-ggtext r-optparse r-phytools bioconductor-ggtree
+# Optional: you may want to create a new environment just in case ;)
+```
 
 ## Usage
 
-`gitana.R -t maximum_likelihood.tree -f infoStrains.tsv`
+`gitana.R --tree trees.file --file infoStrains.tsv`
 
 ## Input files
 
--   The main input is a **phylogenetic tree** previously calculated. Besides, two more trees for the same taxa, based on different algorithms, can be provided for topology comparison.
--   **Tab separated file (no headers)** with OTU information. Optional, but recommended for plotting trees ready for publication.\n
+-   The main input is a list of one or more **phylogenetic tree(s)** previously calculated. 
+The trees must be in Newick or NEXUS format. 
+Nevertheless, NEXUS trees can give an error when they are read by "ape" library (`ape::read.nexus()`), thus, if using NEXUS trees as input, we strongly recommend to use the standard NEXUS format (see NEXUS template file in the examplefiles folder). \
+With the aim of topology comparison, more than one tree with the exact same species can be provided. \
+The input file will list the single or multiple trees.
+
+Example:
+```  
+./examplefiles/maximum_likelihood.nwk
+./examplefiles/maximum_parsimony.nwk
+./examplefiles/neighbor_joining.nwk
+```  
+
+-   A **tab separated file (no headers)** that includes species information. Optional, but recommended for plotting ready-to-publish trees.\
     -   Column 1: Tip labels from raw tree.
     -   Column 2: Accession number of the sequences.
-    -   Column 3: Scientific name. Blank species are allowed. Everything in this column will be plotted in italics.
-    -   Column 4: Strain name. Do not add <sup>T</sup> for type strains.
-    -   Column 5: "type" for type strain. Anything else or blank space for nontype strains.
+    -   Column 3: Scientific name. Space bars are allowed. Everything in this column will be plotted in italics.
+    -   Column 4: Strain/specimen name. Do not add <sup>T</sup> for type strains/specimens.
+    -   Column 5: "type" for type strain/specimen. For nontype strains/specimens, leave the field empty or enter any other text.
 
 Example:
 
 | Column1  | Column2  |           Column3            | Column4 | Column5 |
 |:--------:|:--------:|:----------------------------:|:-------:|:-------:|
 | ZZZ16450 | MF618255 | Rhodohalobacter barkolensis  |  15182  |  type   |
-| H6XSpe11 | MF782427 | '"Aliifodinibius salipaludis"' |  WN023  |  type   |
+| H6XSpe11 | MF782427 | "Aliifodinibius salipaludis" |  WN023  |  type   |
 | H6XSedim | JQ923476 |     Fodinibius sediminis     | YIM J21 |         |
 | H6XRoseu | JQ923475 |      Fodinibius roseus       | YIM D15 |  type   |
 |   ...    |   ...    |             ...              |   ...   |   ...   |
 
-**Note:** Double quatation marks are needed if we want them plotted.
 
 ## Output files
 
--   Plotted tree. By default, pdf format, maximum quality (dpi 300) and A4 size (or larger for \>= 50 OTUs).
--   Rerooted tree (`--root`) plus unedited plotted tree.
+-   Plotted tree. By default, PDF format, high quality (400 dpi) and A4 size (29.7 x 21 cm) or larger for \>= 50 species.
+-   Log file with used arguments (gitana.log).
 -   Unedited tree (`--noedit`).
--   R objects (`--Robject`). To combine the plotted tree with other figures.
--   Log file with used arguments.
+-   Rerooted tree (`--root`) plus unedited plotted tree.
+-   R objects (`--Robject`, gitana.Rds). Plotted tree is saved as an R object and can be combined with other figures.
 
 ## Arguments
 
--   **`-t/--treeOne`**: Phylogenetic tree previously calculated with tools such as [ARB](http://www.arb-home.de), [FastTree](http://www.microbesonline.org/fasttree/), [MEGA](https://www.megasoftware.net), etc.
--   **`-e/--treeTwo`**: Second tree to compare topology with treeOne.
--   **`-n/--treeThree`**: Third tree to compare topology with treeOne and treeTwo.
--   **`-f/--file`**: Data file with information about the tree taxa (species and strain names, accession numbers).
--   **`-o/--output`**: Name and extension (pdf \| jpg \| tiff \| ...) of the plotted tree. Default: treeOne.pdf.
--   **`--Robject`**: Save plotted tree as R object (.rds). Default: `FALSE`.
--   **`--noedit`**: Plot a basic version of the tree with raw names, nodes and tips numeration. Very useful to know node number for edit options.
--   **`-i/--superindex`**: <sup>T</sup> appears behind the strain name (eg.: CECT 7585<sup>T</sup>) for OTUs with "type" in the fifth column of the data file. Default: `FALSE`.
--   **`--layout`**: Plot design. Options: rectangular (*default*) \| slanted \| circular \| radial \| unrooted \| equal_angle \| daylight.
--   **`-l/--ladderize`**: Get ladderize effect for the tree. Default: `FALSE`.
--   **`--bootstrap_percentage`**: Change bootstrap values to percentage. The original scale must be indicated: 1 \| 1000.
--   **`-b/--bootstrap_threshold`**: Bootstrap under the selected values are not represented over the node. Default: `70`.
--   **`--root`**: Select a node/OTU as new root. Numeration can be checked with `--noedit`.
--   **`--position`**: Position along the target edge at which to re-root the tree. Default: middle branch.
+-   **`-t/--tree`**: File listing phylogenetic tree file names. Trees should have been previously inferred with tools such as 
+[PHYLIP](https://phylipweb.github.io/phylip/), [FastTree](http://www.microbesonline.org/fasttree/),
+[BEAST](https://beast.community), 
+[MrBayes](https://nbisweden.github.io/MrBayes/),
+[MEGA](https://www.megasoftware.net), 
+[RAxML](https://github.com/amkozlov/raxml-ng), 
+[PAUP*](https://paup.phylosolutions.com) or 
+[IQ-TREE](http://www.iqtree.org), among others.
+-   **`-f/--file`**: Data file with information about the tree taxa (species, strain/specimen names and accession numbers).
+-   **`--nexus`**: If `TRUE`, the phylogenetic trees format is standard NEXUS. Default: `FALSE` (Newick format).
+-   **`-o/--output`**: Name and extension (`pdf | jpg | tiff | ...`) of the plotted tree. Default: `gitanaPlot.pdf`.
+-   **`--Robject`**: If `TRUE`, plotted tree is saved as R object (`gitana.rds`). Default: `FALSE`.
+-   **`--noedit`**: Plot a basic version of the tree with raw names, nodes and tips numeration (`noedit.pdf`). Very useful for knowing the node and tip number for editing options.
+-   **`--isna`**: If `TRUE`, it will plot missing information from `--file` as NA. Default: `FALSE`.
+-   **`-i/--superindex`**: <sup>T</sup> is displayed behind the strain/specimen name (e.g., CECT 7585<sup>T</sup>) for species marked as "type" in the fifth column of the data file. Default: `FALSE`.
+-   **`--layout`**: Plot design. Options: `rectangular` (*default*) \| `slanted` \| `circular` \| `radial`.
+-   **`-l/--ladderize`**: Get ladderize effect for the tree. Note that this option is not compatible with `--rotate`. Default: `FALSE`.
+-   **`--bootstrap_percentage`**: Change bootstrap values to percentage. The original scale must be indicated: `1` \| `1000`.
+-   **`-b/--bootstrap_threshold`**: Bootstrap below the selected values will not be displayed. Default: `70`.
+-   **`--root`**: Select a node/species as new root. Numeration can be checked with `--noedit`.
+-   **`--position`**: Numeric value for position along the target edge at which to reroot the tree. By default, it will be set at middle branch. E.g., `--position 0.02`.
 -   **`--unroot`**: Unroot a rooted tree.
--   **`-r/--rotate`**: Rotate selected node. Insert multiple positions separated by ','. Rotate all positions with `all`.
--   **`-c/--collapse`**: Collapse nodes. Node position and mode (max \| min \| mixed) separated by ','. `--collapse 35,min`
--   **`--Cotu`**: Color OTU and its branch. Select color with `--color`.
--   **`--Cclades`**: Color clade and its branch. Select color with `--color`.
--   **`--color`**: Color clade/OTU selected with `--Cotu/--Cclades`.
--   **`--Hclades`**: Highlight clade. Select node, color and extension separated by ','. `--Hclades 35,pink,0.01`
--   **`--Bclades`**: Add labels. Select node and add label, separated by ','. `--Bclades 35,Group1`
--   **`--offset`**: Set position of `--Bclades` label.
--   **`--fontsize`**: Tip labels font size. Default: `6`.
--   **`--nodesize`**: Node labels (bootstrap) and bar font size. Default: `5`.
--   **`--bar`**: Bar size. Default: automatically set.
--   **`-W/--output_width`**: Plot width (cm). Default: `29.7` (A4).
--   **`-H/--output_height`**: Plot height (cm). Default: `21` (A4).
--   **`-s/--tree_size`**: Plot is adapted to the sheet size without considering the tip labels. Usually, it is necessary to set it. Lower values expand the tree along the X axis.It is recommended to use bigger sizes for circular layouts
--   **`--scale`**: Scale tree (y-axis). Individual nodes or complete tree. Smaller \<1; bigger \>1. `--scale 35,0.5`
--   **`--scalexy`**: Scale tree (x and y-axis). Individual nodes or complete tree. Smaller \<1; bigger \>1. `--scale 35,0.5`
--   **`-x/--bootstrap_X`**: Position bootstrap values on x-axis. Default: `0`.
--   **`-y/--bootstrap_Y`**: Position bootstrap values on y-axis. Default: `0`.
+-   **`-r/--rotate`**: Rotate the selected node. Insert multiple positions separated by ','. To rotate all positions, use `--rotate all`. E.g., `--rotate 20,26` or `--rotate all,24`.
+-   **`-c/--collapse`**: Collapse nodes. Node position and mode (`max | min | mixed`) separated by ','. To collapse multiple nodes use ":" as separator. E.g., `--collapse 35,min` or `--collapse 35,min:24,max` for multiple nodes.
+-   **`--hide_taxa_number`**: If `TRUE`, hide the number of taxa within the collapsed node after using `--collapse` function.  Default: `FALSE`.
+-   **`--Ctip`**: Color single species (tip) and its branch. To color multiple tips and branches use "," as separator. Select color with `--color`. E.g., `--Ctip 4` or `--Ctip 4,10`
+-   **`--Cclades`**: Color clade and its branch. To color multiple clades and branches use ',' as separator. Choose color with `--color`. E.g., `--Cclades 35` or `--Cclades 35,40` 
+-   **`--color`**: Color clade/species selected with `--Ctip/--Cclades`. E.g., `--color blue` or `--color green,pink`
+-   **`--Hclades`**: Highlight clade. Select node, color and extension separated by ','. To highlight multiple clades use ':' as separator. E.g., `--Hclades 35,pink,0.01` or `--Hclades 35,pink,0.01:40,green,0.015` 
+-   **`--Bclades`**: Add labels. Select node and add label, separated by ','. To add multiple labels use ':' as separator. E.g., `--Bclades 35,Group1` or `--Bclades 35,Group1:40,'Group of interest'`
+-   **`--offset`**: Set position of `--Bclades` label. E.g., `--offset 0.012`
+-   **`--fontsize`**: Font size for tip labels. Default: `6`.
+-   **`--nodesize`**: Font size for node (bootstrap) and bar labels. Default: `5`.
+-   **`--bar`**: Bar size. Default: automatic. E.g., `--bar 0.01`.
+-   **`-W/--output_width`**: Output width (cm). Default: `29.7` (A4).
+-   **`-H/--output_height`**: Output height (cm). Default: `21` (A4).
+-   **`-s/--size`**: Adapt tree horizontal expansion. By default, `1`. 
+-   **`--xlim`**: Circular/radial plots requiere an adjustment of the tree size to fit the species names correctly in the sheet. Lower values expand the tree along the X axis. By default, `NULL`. 
+-   **`--scale`**: Scale tree (y-axis). Individual nodes or complete tree. Smaller \<1; bigger \>1. Use 'all' to scale the complete tree.  To scale multiple nodes use ":" as separator. E.g.: single node: `--scale 35,0.5`; multiple nodes: `--scale 35,0.5;27,1.2`; full tree: `--scale all,0.5`
+-   **`--scalexy`**: Scale tree (x and y-axis). Individual nodes or full tree. Smaller \<1; bigger \>1.  To scale multiple nodes use ":" as separator. E.g.: single node: `--scalexy 35,0.5`; multiple nodes: `--scale 35,0.5;27,1.2`; full tree: `--scalexy all,0.5`
+-   **`-x/--bootstrap_X`**: Bootstrap values position on the x-axis. Default: `0`.
+-   **`-y/--bootstrap_Y`**: Bootstrap values position on the y-axis. Default: `0`.
 
 ## Examples
+Files used in these examples can be found in the 'examplefiles' folder.
 
-#### Basic plot (not ready for publishing)
+#### **Basic plot (not ready for publishing)**
 
-```         
-gitana.R --treeOne maximum_likelihood.tree
+We only need a file (tree1.file) with the name to the tree: 
+
+``` 
+ls maximum_likelihood.nwk > tree1.file
+# List the selected tree file (and its path) in a file. For single trees, the list will contain a single item.
+```
+
+```        
+gitana.R --tree tree1.file
+# 'tree1.file' indicates (path and) name of the tree file
 # By default, only bootstrap values above 70% are displayed. 
 ```
 
-<img src="https://github.com/user-attachments/assets/9e4d140c-92e2-4356-bc78-584217598a4b" width="75%" />
+::: {style="text-align: center;"}
+![**Fig 1.** Basic tree without any kind of editing. Tip labels (species names) are printed as shown in the phylogenetic tree file. The plot is similar to the visualization with other popular tools.](/mnt/data-lvm/users/galisteo/servidor/gitana/250214_rev/new_figures_manual/oneTree.png){#id .class width="60%" height="60%"}
+:::
 
-We can easily plot our tree file using a single argument, which is quite useful for quick peek of the result. This is similar to the visualization with other popular tools. Clearly, it is not suitable for publication.
+\
+We can easily plot our tree file using a single argument, which is quite useful for a first peek of the result. This is similar to the visualization with other popular tools. Clearly, it is not suitable for publication.
+\
 
-#### Basic plot ready for publication
+#### **Basic plot ready for publication**
+
+To transform the previous tree (**Fig 1**) into a ready-to-publish image (**Fig 2**), the first thing is to have ready a tab-separated file as explained in the **Input file** section. 
+Instead of using a single tree, we want to compare the phylogenies generated for the same dataset. They will all be listed in one file:
+
+``` 
+ls *nwk > trees.file
+cat trees.file
+# maximum_likelihood.nwk
+# maximum_parsimony.nwk
+# neighbor_joining.nwk
+```
+
+Since there are type strains/specimens among the species, we will select the `--superindex/-i` option.
+Alse, we want a nicer topology, so we will use the `--ladderize/-l` option to give the tree a ladder-like effect.
+The `--bar` argument selects the size of the bar width.
+The `-y` and `-x` arguments will adjust the position of the bootstrap values above the nodes. As we are not adjusting the `--bootstrap_threshold/-b` argument, bootstrap values under 70% will be filtered out.
+Finally, we will specify the name of the output file as well as the file format (PNG instead of the default PDF) with the `--output/-o` argument.\
 
 ```         
-gitana.R --treeOne maximum_likelihood.tree --treeTwo maximum_parsimony.tree --treeThree neighbor_joining.tree --file infoStrains.tsv -l -i -s 0.5 --bar 0.05 -y 0.3 -x -0.01 --output basic.png
-# --treeOne/--treeTwo/--treeThree: Phylogenetic tree based on three different algorithms.
-# --file: information about the species
+gitana.R --tree trees.file --file infoStrains.tsv -l -i --bar 0.05 -y 0.3 -x -0.01 --output basic_ready.png
+# --tree: file indicanting path and name of the tree or trees to produce the final plot. All trees should harbour the same taxa dataset. 
+# --file: file with information about the species. Nomenclature, strain and accession number will be taken from this file.
 # -l: beautify the topology
-# -i: add superindex T to selected OTUs in --file
-# -s: adapt tree size to fit the OTU labels in the sheet
-# --bar: select bar width
-# -y: select bootstrap position in the y-axis 
-# -x: select bootstrap position in the x-axis 
-# --output: name output file and select png as format
+# -i: add superindex T to species in which "type" was specified in the column 5 from --file 
+# --bar: select bar width instead of the automatic bar width selection
+# -y: select bootstrap position on the y-axis 
+# -x: select bootstrap position on the x-axis 
+# --output: name of the output file and select png as format
 ```
 
-<img src="https://github.com/user-attachments/assets/bbbd09e8-2f66-45e2-afcc-6cd0d13f38ac" width="75%" />
+::: {style="text-align: center;"}
+![**Fig 2.** Ready-to-publish tree.](/mnt/data-lvm/users/galisteo/servidor/gitana/250214_rev/new_figures_manual/basic_ready.png){#id .class width="60%" height="60%"}
+:::
+\
+We have a really nice basic plot ready to publish! Species names were perfectly edited and <sup>T</sup> added to the strain names. 
+Bootstrap values below 70% have been filtered out and the percentage has been placed next to the nodes. 
+Filled circles indicate common nodes for the input trees.
 
-We have a really nice basic plot ready for publish! OTU labels were perfectly edited and <sup>T</sup> added to the strain names. Bootstrap values under 70% were filtered out and the percentage was positioned next to the nodes. Black dots indicate common nodes for the three topologies based on maximum-likelihood, maximum-parsimony and neighbor-joining, respectively.
-
-However, we may want to personalize it a little bit more. For example, name clusters or highlight one or more OTUs. For that, we will need to check the node numeration of the tree with `--noedit`.
-
-#### Get node/tip position
-
-```         
-gitana.R --treeOne maximum_likelihood.tree --noedit
-# --treeOne: our tree for plotting. Even if we will be using two or more trees for comparison, node/tip position will be based on --treeOne, which topology is plotted.
-# --noedit
+However, we may want to keep the original topology. In that case, we remove the `--ladderize/-l` option:
+```           
+gitana.R --tree trees.file --file infoStrains.tsv -i --bar 0.05 -y 0.3 -x -0.01 --output basic_noladderize.png
 ```
 
-<img src="https://github.com/user-attachments/assets/11932333-85b8-43e2-aa2b-8adf9cc1c150" width="75%" />
+::: {style="text-align: center;"}
+![**Fig 3.** Phylogeneetic tree with original topology.](/mnt/data-lvm/users/galisteo/servidor/gitana/250214_rev/new_figures_manual/basic_noladderize.png){#id .class width="60%" height="60%"}
+:::
+\
+Or, we may want to plot all the bootstrap values instead of those above a certain threshold: 
+```           
+gitana.R --tree trees.file --file infoStrains.tsv -l -i --bar 0.05 -y 0.3 -x -0.01 -b 0 --output basic_b0.png
+-b 0: all bootstrap values will be displayed.
+```
+::: {style="text-align: center;"}
+![**Fig 4.** Phylogenetic tree with all bootstrap values above the nodes.](/mnt/data-lvm/users/galisteo/servidor/gitana/250214_rev/new_figures_manual/basic_b0.png){#id .class width="60%" height="60%"}
+:::
+\
+We can exclude some of the taxa information such as some accession numbers or even taxa names. By default, the tree will be plotted with this missing information:
+```           
+gitana.R --tree trees.file --file infoStrainsNA.tsv -l -i --bar 0.05 -y 0.3 -x -0.01 --output basic_NA.png
+```
+::: {style="text-align: center;"}
+![**Fig 5.** Phylogenetic tree with missing information.](/mnt/data-lvm/users/galisteo/servidor/gitana/250214_rev/new_figures_manual/basic_NA.png){#id .class width="60%" height="60%"}
+:::
+\
+The previous tree contains several mistakes due to the missing information in `--file`. If we want to highlight the possible missing information in the generated tree we may use `--isna`.
 
-OTU numeration is represented in yellow and node numeration in blue.
+```           
+gitana.R --tree trees.file --file infoStrainsNA.tsv -l -i --bar 0.05 -y 0.3 -x -0.01 --isna --output basic_isNA.png
+```
+::: {style="text-align: center;"}
+![**Fig 6.** Phylogenetic tree showing **NA** at missing information.](/mnt/data-lvm/users/galisteo/servidor/gitana/250214_rev/new_figures_manual/basic_isNA.png){#id .class width="60%" height="60%"}
+:::
+\
 
-#### Pretty plot ready for publication
+#### **Get node/tip position**
 
-```         
-gitana.R --treeOne maximum_likelihood.tree --treeTwo maximum_parsimony.tree --treeThree neighbor_joining.tree --file infoStrains.tsv -l -i -s 0.5 --bar 0.05 -y 0.3 -x -0.01 --output pretty.png --collapse 23,mixed --Bclade 23,Gracilimonas,#FF6347,bold.italic --offset 0.04 --scale 23,0.5 --Hclade 29,#FFA54F,0.25 --Cotu 14 --color seagreen
-# --collapse: collapse the node 23 with mode "mixed"
-# --Bclade: add a label to the collapse node 23 with the name of the genus (Gracilimonas). Select the color and the fontface for the label
-# --offset: set label placement
-# --scale: reduce the size (0.5) of the collapse node 23 to save space
-# --Hclade: highlight a genus of interest (node 29), color it and set the size of the rectangle
-# --Cotu: color a select OTU (14)
-# --color: select the color for the OTU 14.
+```           
+gitana.R --tree trees.file --noedit
+# --tree: our tree for plotting. Even if we provide two or more input trees for comparison, node/tip numbering will be based on first listed tree, whose topology will be plotted.
+# --noedit: print tree with node/tip numbering.
+#  No more arguments needed. Output image will be save as a PDF file.
+```
+::: {style="text-align: center;"}
+![**Fig 7.** Tree plotted with node (blue) and tip (yellow) numbering based on the 'ape' R package.](/mnt/data-lvm/users/galisteo/servidor/gitana/ex_plot/maximum_likelihood_noedit.png){#id .class width="60%" height="60%"}
+:::
+\
+
+Node/tip identification is required for some of the arguments, such as `--rotate`: 
+
+```  
+gitana.R --tree trees.file --file infoStrains.tsv -i --bar 0.05 -y 0.3 -x -0.01 --rotate 29 -o basic_noladderize_rotate.png
+# --rotate: indicates node that we wish to rotate from the original topology. Remember: --rotate and --ladderize are mutually exclusive.
+```
+::: {style="text-align: center;"}
+![**Fig 8.** Node 29 has been rotated from the original topology.](/mnt/data-lvm/users/galisteo/servidor/gitana/250214_rev/new_figures_manual/basic_noladderize_rotate.png){#id .class width="60%" height="60%"}
+:::
+\
+
+#### **Collapse**
+`--collapse` will allow the collapse of taxa within the selected node: 
+```  
+gitana.R --tree trees.file --file infoStrains.tsv -l -i --bar 0.05 -y 0.3 -x -0.01 --collapse 23,mixed --output collapseBasic.png
+# --collapse: select the node to collapse and the type of collapsing (max | min | mixed)
+```
+::: {style="text-align: center;"}
+![**Fig 9.** Node 23 has been collapsed with 'mixed' layout. The number of taxa within the collapsed node is indicated next to the node.](/mnt/data-lvm/users/galisteo/servidor/gitana/250214_rev/new_figures_manual/collapseBasic.png){#id .class width="60%" height="60%"}
+:::
+\
+
+The collapsed node can be annotated using `--Bclade` to add the label and select the color and font face, and `--offset` to set its position.
+```  
+gitana.R --tree trees.file --file infoStrains.tsv -l -i --bar 0.05 -y 0.3 -x -0.01 --collapse 23,mixed --Bclade 23,Gracilimonas,#FF6347,bold.italic --offset 0.04 --output collapsedAnotated.png 
+# --collapse: select the node to collapse and the type of collapsing (max | min | mixed)
+# --Bclade: select the node to annotate (23), the annotation text (Gracilimonas), the color of the text (#FF6347) and font face (bold.italic). Font face can be: plain | bold | italic | bold.italic
+# --offset: position of the added label
+```
+::: {style="text-align: center;"}
+![**Fig 10.** Node 23 has been collapsed with 'mixed' layout. The number of taxa within the collapsed node is indicated next to the node. All the taxa within the node 23 belong to the genus *Gracilimonas* thus, it is labeled with the name of that genus.](/mnt/data-lvm/users/galisteo/servidor/gitana/250214_rev/new_figures_manual/collapsedAnotated.png){#id .class width="60%" height="60%"}
+:::
+\
+
+Depending on the number of taxa constituting the collapsed node, it could still take up a lot of space in the tree plot. The `--scale` argument edits the height of the selected node. 
+```  
+gitana.R --tree trees.file --file infoStrains.tsv -l -i --bar 0.05 -y 0.3 -x -0.01 --collapse 23,mixed --Bclade 23,Gracilimonas,#FF6347,bold.italic --offset 0.04 --scale 23,0.5 --output collapsedAnotatedScaled.png
+# --scale: select node (23) and set it to smaller size (x0.5).
+```
+::: {style="text-align: center;"}
+![**Fig 11.** Node 23 has been collapsed with 'mixed' layout. The number of taxa within the collapsed node is indicated next to the node. All the taxa within the node 23 belong to genus *Gracilimonas*, thus it is labeled with the name of the genus.](/mnt/data-lvm/users/galisteo/servidor/gitana/250214_rev/new_figures_manual/collapsedAnotatedScaled.png){#id .class width="60%" height="60%"}
+:::
+\
+
+To remove the label with number of taxa within the collapsed node, use `--hide_taxa_number`.
+``` 
+gitana.R --tree trees.file --file infoStrains.tsv -l -i --bar 0.05 -y 0.3 -x -0.01 --collapse 23,mixed --scale 23,0.5 --Bclade 23,Gracilimonas,#FF6347,bold.italic --offset 0.04 --hide_taxa_number --output collapsedAnotatedScaledNtaxa.png
+# --hide_taxa_number: remove the text label indicating the number of taxa within the node 23.
+```
+::: {style="text-align: center;"}
+![**Fig 12.** Node 23 has been collapsed with 'mixed' layout. All the species within the node 23 belong to genus *Gracilimonas* thus, it is labeled with the name of the genus.](/mnt/data-lvm/users/galisteo/servidor/gitana/250214_rev/new_figures_manual/collapsedAnotatedScaledNTaxa.png){#id .class width="60%" height="60%"}
+:::
+\
+
+
+#### **Color**
+Selected taxa or nodes can be colored using `--Ctip` or `--Cclade` combined with `--Hclade`. Beware, `--Ctip` and `--Cclade` are mutually exclusive.
+
+```  
+gitana.R --tree trees.file --file infoStrains.tsv -l -i --bar 0.05 -y 0.3 -x -0.01 --Ctip 14 --color seagreen --output Cotu.png
+# --Ctip: select species to color.
+# --color: select the color by name or HEX code.
+```
+::: {style="text-align: center;"}
+![**Fig 13.** Taxon of interes located at tip 14 has been colored.](/mnt/data-lvm/users/galisteo/servidor/gitana/250214_rev/new_figures_manual/Cotu.png){#id .class width="60%" height="60%"}
+:::
+\
+
+Furthermore, we can combine `--Ctip` and `--Hclade`:
+```  
+gitana.R --tree trees.file --file infoStrains.tsv -l -i --bar 0.05 -y 0.3 -x -0.01 --Ctip 14 --color seagreen --Hclade 29,#FFA54F,0.25 --output CtipHclade.png
+# --Hclade: select node, color and the width of the rectangle.
+```
+::: {style="text-align: center;"}
+![**Fig 14.** The taxon of interest located at tip 14 has been colored and the cluster it belong to (node 29) has been highlighted.](/mnt/data-lvm/users/galisteo/servidor/gitana/250214_rev/new_figures_manual/CtipHclade.png){#id .class width="60%" height="60%"}
+:::
+\
+
+Similarly, we can combine the `--Cclade`, `--Hclade` and `--Bclade`:
+```  
+gitana.R --tree trees.file --file infoStrains.tsv -l -i --bar 0.05 -y 0.3 -x -0.012 -Cclade 29 --color seagreen --Bclade 29,Fodinibius,seagreen,bold.italic --offset 0.29 --Hclade 14,#EEAEEE,0.3:35,#EEAEEE,0.27 --size 1.2 --output Cclade.png -
+# --Cclade: select clade to color
+# --color: select color for Cclade
+# --Bclade: create text annotation for the colored clade
+# --offset: set position of the text annotation (--Bclade)
+# --Hclade: select one tip and one node and their respective colors and width of the rectangles, separated by ":"
+# --size: squeeze image to the left for better accomodation of text annotation
+```
+::: {style="text-align: center;"}
+![**Fig 15.** Color clade related to the genus *Fodinibius*, label this node and highlight species and clade of species of interest.](/mnt/data-lvm/users/galisteo/servidor/gitana/250214_rev/new_figures_manual/Cclade.png){#id .class width="60%" height="60%"}
+:::
+\
+
+Of course, we can combine it with other functions such as `--collapse`: 
+```  
+gitana.R --tree trees.file --file infoStrains.tsv -l -i --bar 0.05 -y 0.3 -x -0.01 --collapse 23,mixed --Bclade 23,Gracilimonas,#FF6347,bold.italic --offset 0.04 --scale 23,0.5 --Ctip 14 --color seagreen --Hclade 29,#FFA54F,0.25 --output collapsedCtipHclade.png 
+```
+::: {style="text-align: center;"}
+![**Fig 16.** Collapse the node 23, annotate it, and scale it. Species located at tip 14 is colored and node 29 is highlighted.](/mnt/data-lvm/users/galisteo/servidor/gitana/250214_rev/new_figures_manual/collapsedCtipHclade.png){#id .class width="60%" height="60%"}
+:::
+\
+
+#### **Rerooting**
+Rerooting is as simple as using the `--root` option. It creates a new tree that is ready to edit. By default, it will set equivalent branch length but it can be edited by `--position`.
+```  
+## Reroot first:
+gitana.R --tree trees.file --root 29
+## It generates the following files:
+# rerooted__node29_0.021415.pdf     # Plotted tree as '--noedit'.
+# rerooted__node29_0.021415.tree    # Rooted tree.
+
+## Rerooted tree name should be save in a new file:
+ls rerooted__node29_0.021415.tree > treesReroot.file
+
+## Plot it as a regular tree:
+gitana.R --tree treesReroot.file --file infoStrains.tsv -l -i --bar 0.05 -y 0.3 -x -0.01 --output rerooted_maximum_likelihood_node29_0.021415.png
+```
+::: {style="text-align: center;"}
+![**Fig 17.** Phylogenetic tree previously rerooted at node 29.](/mnt/data-lvm/users/galisteo/servidor/gitana/250214_rev/new_figures_manual/rerooted_maximum_likelihood_node29_0.021415.png){#id .class width="60%" height="60%"}
+:::
+\
+To manually select the position along the target edge at which to reroot the tree, use `--position` option:
+```  
+## Reroot first:
+gitana.R --tree trees.file --root 29 --position 0.01
+# --position: indicates the position of the root along the target root.
+
+## It generates the following files:
+# rerooted__node29_0.01.pdf     # Plotted tree as '--noedit'.
+# rerooted__node29_0.01.tree    # Rooted tree.
+
+## Name of the new tree should be saved in 'treesRerootPosition.file': 
+ls rerooted__node29_0.01.tree > treesRerootPosition.file    
+
+## Plot it as a regular tree:
+gitana.R --tree treesRerootPosition.file --file infoStrains.tsv -l -i --bar 0.05 -y 0.3 -x -0.01 --output rerooted_maximum_likelihood_node29_0.01.png
+```
+::: {style="text-align: center;"}
+![**Fig 18.** Phylogenetic tree previously rerooted at node 29 with customized position of the root brach length.](/mnt/data-lvm/users/galisteo/servidor/gitana/250214_rev/new_figures_manual/rerooted_maximum_likelihood_node29_0.01.png){#id .class width="60%" height="60%"}
+:::
+\
+
+#### **Layout**
+Until now, we have only plotted trees using the `rectangular` layout (default). 'gitana.R' also allows `slanted`, `circular` and `radial` layouts:
+
+a) Layout `slanted`:
+```  
+gitana.R --tree trees.file --file infoStrains.tsv -l -i --bar 0.05 --layout slanted -x -0.013 --output basic_slanted.png
+# --layout: select 'slanted'
+# -x: select position of bootstrap values in the x-axis
+## In this case, we don't ajust the bootstrap position in the y-axis
+```
+::: {style="text-align: center;"}
+![**Fig 19.** Phylogenetic tree with `slanted` layout.](/mnt/data-lvm/users/galisteo/servidor/gitana/250214_rev/new_figures_manual/basic_slanted.png){#id .class width="60%" height="60%"}
+:::
+\
+
+b) Layout `circular`:
+\
+Circular trees are more difficult to customize because the tree takes up more space than the `rectangular`/`slanted` layout. \
+The sheet size will be set to square dimensions by default. Taxa names may not be fully displayed. `--xlim` will adjust the tree along the x-axis and `--fontsize` and `--nodesize` will set smaller font size for better visualization.
+```  
+gitana.R --tree trees.file --file infoStrains.tsv -l -i --bar 0.05 --layout circular -x -0.015 -y 0.15 --xlim 0.6 --fontsize 4 --nodesize 3 --output basic_circular.png
+# --layout: select 'circular'
+# --xlim: lower values expand the tree along the x-axis. It is recommended to use bigger sizes for circular layouts.
+# --fontsize: set a smaller font size for taxa names (by default, 6).
+# --nodesize: set a smaller font size for bootstrap (by default, 4).
+```
+::: {style="text-align: center;"}
+![**Fig 20.** Phylogenetic tree with `circular` layout.](/mnt/data-lvm/users/galisteo/servidor/gitana/250214_rev/new_figures_manual/basic_circular.png){#id .class width="60%" height="60%"}
+:::
+\
+
+Circular layouts can be edited in a similar way than the rectangular layouts:
+```  
+gitana.R --tree trees.file --file infoStrains.tsv -l -i --bar 0.05 --layout circular -x -0.015 -y 0.15 --xlim 0.6 --fontsize 4 --nodesize 3 --Cclade 29 --color seagreen --output circular_Cclade.png
 ```
 
-<img src="https://github.com/user-attachments/assets/6cf80315-62cf-4a37-b461-b8216d588cab" width="75%" />
+::: {style="text-align: center;"}
+![**Fig 21.** Phylogenetic tree with `circular` layout with node 29 colored.](/mnt/data-lvm/users/galisteo/servidor/gitana/250214_rev/new_figures_manual/circular_Cclade.png){#id .class width="60%" height="60%"}
+:::
+\
 
-OTU numeration is represented in yellow and node numeration in blue.
+c) Layout `radial`:
+\
+Radial layout is similar to `circular` layout, which means that `--xlim`, `--fontsize` and `--nodesize` might need to be modified.
 
-#### Pretty plot (v2) ready for publication
-
-```         
-gitana.R --treeOne maximum_likelihood.tree --treeTwo maximum_parsimony.tree --treeThree neighbor_joining.tree --file infoStrains.tsv -l -i -s 0.6 --bar 0.05 -y 0.3 -x -0.012 --output pretty2.png --Cclade 29 --color seagreen --Bclade 29,Fodinibius,seagreen,bold.italic --offset 0.29 --Hclade 14,darkseagreen,0.3:35,steelblue,0.27 --scalexy 21,0.75
-# --Cclade: color the genus under study
-# --color: select the color for our genus
-# --Bclade: name the clade (genus)
-# --offset: set label placement
-# --Hclade: highlight two groups of OTU within the genus under study, separated by ":". 
-# --scalexy: scale the other OTUs in the y and x axis 
+```  
+gitana.R --tree trees.file --file infoStrains.tsv -l -i --bar 0.05 --layout radial -x -0.02 --xlim 0.6 --fontsize 4 --nodesize 3 --output basic_radial.png 
 ```
 
-<img src="https://github.com/user-attachments/assets/47ff2c59-5c9f-4d12-a710-044b9dc15589" width="75%" />
+::: {style="text-align: center;"}
+![**Fig 22.** Phylogenetic tree with "radial" layout.](/mnt/data-lvm/users/galisteo/servidor/gitana/250214_rev/new_figures_manual/basic_radial.png){#id .class width="60%" height="60%"}
+:::
+\
 
-In this second version, we are focusing on the genus *Fodinibius* exclusively. We color all the members and name the cluster including all the species. Besides, we highlight the main species under study and the group of two species we are comparing it with. Last, we shrink (without collapsing) the rest of the OTU to remove attention from them.
+#### **Working with big trees**
+In general, the larger the tree, the harder it is to visualize. 'gitana.R' automatically adjusts the height of sheet size depending on the number of taxa. 
+However, in some cases it may be necessary to adjust it manually. It is also recommended to set the font size smaller than the default to avoid overlapping.
+The authors recommend to fit the trees and then change position options like `--bootstrap_X`, `--bootstrap_Y`, `--offset` or `--Hclades`. 
 
-#### Advance figure from our plot ready for publication
-
-gitana.R generates high quality figures without any coding In R. However, it is more limited than working directly with the libraries in R. The argument `--Robject` export the result of gitana.R. That way, it is possible to explore are plot options for phylogenetic trees, or combine it with other plots.
-
-```         
-gitana.R --treeOne maximum_likelihood.tree --treeTwo maximum_parsimony.tree --treeThree neighbor_joining.tree --file infoStrains.tsv -l -i -s 0.5 --bar 0.05 -y 0.3 -x -0.01 --output basic.png --Robject
-# --Robject: save as R object as 'maximum_likelihood.rds'
+```  
+gitana.R --tree big_tree_MP.file --file infoStrains_bigTree.tsv -l --bar 0.01 -H 85 --fontsize 3 --nodesize 2 -x -0.006 -y 0.4 --output big_tree.png 
+# -H: gitana.R selects 80 cm. However, we decided to add 5 cm for a better fit.
+# --fontsize: the font size of the species names has been reduced from 5 to 3 to avoid overlapping.
+# --nodesize: similarly, the font size of the nodes and bar text has been reduced from 4 to 2.
 ```
 
-The RDS object can be load in a new R script:
+::: {style="text-align: center;"}
+![**Fig 23.** Phylogenetic tree with 245 species.](/mnt/data-lvm/users/galisteo/servidor/gitana/250214_rev/new_figures_manual/big_tree.png){#id .class width="60%" height="60%"}
+:::
+\
 
-```         
+To plot them with circular/radial layout, 'gitana.R' adjusts a 1:1 sheet size depending on the number of taxa: 
+
+```  
+gitana.R --tree big_tree_MP.file --file infoStrains_bigTree.tsv -l --bar 0.01 -H 60 -W 60 --fontsize 3 --nodesize 2 -x -0.004 -y 0.4 --xlim 0.3 --output big_tree_circular.png 
+# gitana.R selected a size of 80x80 cm for the > 200 species of this tree. We selected bigger sheet size. Furthermore, we squeezed the tree to avoid white spaces in the middle using "--xlim".
+# -H: gitana.R selects 80 cm. However, we decided for a smaller sheet: 60 cm
+# -W: gitana.R selects 80 cm. However, we decided for a smaller sheet: 60 cm
+# --fontsize: the fontsize of the species names has been reduced from 5 to 3 to avoid overlapping 
+# --nodesize: similarly, the font size of the nodes and bar text has been reduced from 4 to 2
+# --xlim: squeeze the tree closer to the middle as we are using values above 0
+```
+
+::: {style="text-align: center;"}
+![**Fig 24.** Phylogenetic tree with 245 species with "circular" layout.](/mnt/data-lvm/users/galisteo/servidor/gitana/250214_rev/new_figures_manual/big_tree_circular.png){#id .class width="60%" height="60%"}
+:::
+\
+
+
+
+#### **Advance modifications to our ready-to-publish plot**
+
+'gitana.R' produces high quality figures without any R coding skills. 
+However, it is more limited than working directly with the libraries in R. 
+The argument `--Robject` exports the result of 'gitana.R' into a `RDS` file. 
+This makes it possible to explore other plotting options for phylogenetic trees, or combine it with other plots.
+
+```           
+gitana.R --tree trees.file --file infoStrains.tsv -l -i --bar 0.05 -y 0.3 -x -0.01 --output basic.png --Robject
+# --Robject: saves R object as 'gitana.rds'
+```
+
+The `RDS` object can be loaded in a new R script:
+
+``` R         
 # Load 'gitana.R' results: 
-load("maximum_likelihood.rds") # Plotted tree is saved in 'tr'
+load("gitana.rds") # Plotted tree is saved in a variable called 'tr'.
 
-# Read  table with extra data
+# Read table with extra data:
 df <- read.table("gene_presence.tsv", sep="\t", header =T)
 head(df)
 #        otu genA genB genC genD genE genF
@@ -198,13 +506,13 @@ head(df)
 # 5 KU987442    1    0    1    1    0    0
 # 6   B_vulg    0    0    0    0    1    0
 
-# Prepare data                 
+# Prepare data:               
 mdf <- reshape::melt(df)
 mdf$value <- as.character(mdf$value)
 
-# Plot heatmap
+# Plot heatmap:
 library(ggplot2)
-hmap <- ggplot(mdf, aes(x=variable, y =otu, fill=value)) + 
+hmap <- ggplot(mdf, aes(x=variable, y=otu, fill=value)) + 
   geom_tile(color="black") + coord_fixed() + 
   theme(
     legend.position="none", 
@@ -213,16 +521,18 @@ hmap <- ggplot(mdf, aes(x=variable, y =otu, fill=value)) +
     axis.text.x = element_text(face = "italic", size = 10), 
     legend.title = element_blank()
   ) + 
-    scale_fill_manual(values = c("white", "orange"))
+  scale_fill_manual(values = c("white", "orange"))
     
-# Tree scale add extra blank space at the bottom of the tree. 
-# So, let's remove it the three layers creating the tree scale.
+# Tree bar scale add extra blank space at the bottom of the tree. 
+# So, let's remove the three layers creating the tree bar scale:
 tr$layers[[7]] <- NULL
 tr$layers[[6]] <- NULL
 tr$layers[[5]] <- NULL
-# And plot is somewhere else
-tr + geom_treescale(x = 0, y =15, width = 0.05) + 
-     xlim(0,1.2) # Reajust tree size to fit better in the new plot
+# We still want to display the bar scale, so we manually plot it indicating the position with `x` and `y` arguments: 
+tr <- tr + geom_treescale(x = 0, y = 15, width = 0.05)
+
+# Besides, we reajust tree size to fit better in the new plot:
+tr <- tr + xlim(0,1.2)
 
 # Plot our new heatmap with the tree in the left side.
 # The library 'aplot' sort heatmap to match the OTU order of the tree.
@@ -231,34 +541,8 @@ hmap %>% aplot::insert_left(tr, width = 2)
 ggsave("aplot.png", width = 29.7, height = 21, units = "cm", dpi= 300)  
 ```
 
-<img src="https://github.com/user-attachments/assets/339733f3-ac19-40d9-a880-5f4511cdeee9" width="75%" />
+::: {style="text-align: center;"}
+![**Fig 25.** Phylogenetic tree plotted with `gitana.R`, exported as a `Robject` and further combined with other R plot. The presence (orange) and absence (white) of genes is shown on the right side, sorted by tree topology.](/mnt/data-lvm/users/galisteo/servidor/gitana/ex_plot/aplot.png){#id .class width="60%" height="60%"}
+:::
+\
 
-gitana.R tree is plotted at the left. The presence (yellow) and absence (white) of genes is at the right, sorted by tree topology.
-
-#### Rerooting
-
-Phylogeny inferring tools does not always root trees.
-
-'gitana.R' can root or reroot trees.
-
-First, we check the node numeration with `--noedit`.
-
-```         
-gitana.R --treeOne maximum_likelihood.tree --root 29
-# A new tree is created: rerooted_maximum_likelihood_node29_0.021415.tree
-# As well a pdf with the new tree plotted with --noedit: rerooted_maximum_likelihood_node29_0.021415.pdf
-# The new tree is named after the original tree, plus the node and the position of the branch
-# Then, gitana.R is performed as usual to beautify the tree
-gitana.R --treeOne rerooted_maximum_likelihood_node29_0.021415.tree --treeTwo maximum_parsimony.tree --treeThree neighbor_joining.tree --file infoStrains.tsv -l -i -s 0.5 --bar 0.05 -y 0.3 -x -0.01 --output rerooted_maximum_likelihood_node29_0.021415.png
-```
-
-<img src="https://github.com/user-attachments/assets/372d0b83-929f-4dc8-a56a-f8ca6fc44eb4" width="75%" />
-
-```         
-# The position can be manually select with --position
-gitana.R --treeOne maximum_likelihood.tree --root 29 --position 0.01
-# Plot it
-gitana.R --treeOne rerooted_maximum_likelihood_node29_0.01.tree --treeTwo maximum_parsimony.tree --treeThree neighbor_joining.tree --file infoStrains.tsv -l -i -s 0.55 --bar 0.05 -y 0.3 -x -0.01 --output rerooted_maximum_likelihood_node29_0.01.png
-```
-
-<img src="https://github.com/user-attachments/assets/091d8ccf-139c-48f9-8a05-5d71c08d7f61" width="75%" />

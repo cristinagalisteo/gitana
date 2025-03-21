@@ -1,8 +1,3 @@
-[PRG=phyml-2.4.5 FILTER=pos_var_ssuref:bacteria STYPE=DNA
-
-Sun Feb  7 19:32:43 2021: Loaded from outtree
-Sat Feb 13 21:41:54 2021: tree_just2V2_ML saved to /home/galisteo/just2V2_ML.tree
-]
 (((((((I37Mengy:0.01465,
 I37Rosea:0.01338
 )92:0.01071,
