@@ -1,10 +1,3 @@
-[PRG=phyml-2.4.5 FILTER=pos_var_ssuref:bacteria STYPE=DNA
-
-Mon Dec 28 18:07:59 2020: Loaded from outtree
-
-[created as copy of 'tree_1BSP152V2ANDAliifodinibius_ML']
-Sat Feb 13 21:42:03 2021: tree_just2V2_MP saved to /home/galisteo/just2V2_MP.tree
-]
 ((((((((I37Mengy:0.01508,
 I37Rosea:0.01791
 )99:0.01186,
