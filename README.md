@@ -44,7 +44,7 @@ conda install -c conda-forge -c bioconda r-base=4.2.2 r-ape r.ggplot2 r-ggtext r
 
 -   The main input is a list of one or more **phylogenetic tree(s)** previously calculated. 
 The trees must be in Newick or NEXUS format. 
-Nevertheless, NEXUS trees can give an error when they are read by "ape" library (`ape::read.nexus()`), thus, if using NEXUS trees as input, we strongly recommend to use the standard NEXUS format (see NEXUS template file in the examplefiles folder). \
+Nevertheless, NEXUS trees can give an error when they are read by "ape" library (`ape::read.nexus()`), thus, if using NEXUS trees as input, we strongly recommend to use the standard NEXUS format (see NEXUS template file in the [examplefiles](https://github.com/cristinagalisteo/gitana/tree/main/examplefiles) folder). \
 With the aim of topology comparison, more than one tree with the exact same species can be provided. \
 The input file will list the single or multiple trees.
 
