@@ -28,7 +28,7 @@ It was built on **R version 4.4.2**.
 | optparse |         \>=1.7.5         | <https://cran.r-project.org/web/packages/optparse/> |
 | phytools |         \>=2.4.4         | <https://cran.r-project.org/web/packages/phytools/> |
 
-(\*) Different versions has been tested with success, but some of the optional graphic modifications might produce unusual results.\
+(\*) Different versions has been tested with success, but some of the optional graphic modifications might produce unusual results.
 
 Authors recommend installation with conda: 
 ```
