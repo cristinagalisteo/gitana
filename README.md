@@ -123,7 +123,7 @@ Example:
 -   **`-s/--size`**: Adapt tree horizontal expansion. By default, `1`. 
 -   **`--xlim`**: Circular/radial plots requiere an adjustment of the tree size to fit the species names correctly in the sheet. Lower values expand the tree along the X axis. By default, `NULL`. 
 -   **`--scale`**: Scale tree (y-axis). Individual nodes or complete tree. Smaller \<1; bigger \>1. Use 'all' to scale the complete tree.  To scale multiple nodes use ":" as separator. E.g.: single node: `--scale 35,0.5`; multiple nodes: `--scale 35,0.5;27,1.2`; full tree: `--scale all,0.5`
--   **`--scalexy`**: Scale tree (x and y-axis). Individual nodes or full tree. Smaller \<1; bigger \>1.  To scale multiple nodes use ":" as separator. E.g.: single node: `--scalexy 35,0.5`; multiple nodes: `--scale 35,0.5;27,1.2`; full tree: `--scalexy all,0.5`
+-   **`--scalexy`**: Scale tree (x and y-axis). Individual nodes or full tree. Smaller \<1; bigger \>1.  To scale multiple nodes use ":" as separator. E.g.: single node: `--scalexy 35,0.5`; multiple nodes: `--scalexy 35,0.5;27,1.2`; full tree: `--scalexy all,0.5`
 -   **`-x/--bootstrap_X`**: Bootstrap values position on the x-axis. Default: `0`.
 -   **`-y/--bootstrap_Y`**: Bootstrap values position on the y-axis. Default: `0`.
 
@@ -136,7 +136,7 @@ We only need a file (tree1.file) with the name to the tree:
 
 ``` 
 cat tree1.file
-# ./maximum_likelihood.nwk
+./maximum_likelihood.nwk
 # The file will contain a single item. 
 ```
 
@@ -152,7 +152,7 @@ gitana.R --tree tree1.file
 
 \
 We can easily plot our tree file using a single argument, which is quite useful for a first peek of the result. This is similar to the visualization with other popular tools. Clearly, it is not suitable for publication.
-\
+
 
 #### **Basic plot ready for publication**
 
