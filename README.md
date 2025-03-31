@@ -217,9 +217,9 @@ We can exclude some of the taxa information such as some accession numbers or ev
 gitana.R --tree trees.file --file infoStrainsNA.tsv -l -i --bar 0.05 -y 0.3 -x -0.01 --output basic_NA.png
 ```
 
-<img src="https://github.com/user-attachments/assets/574582f7-da02-497e-81fc-82cf4e5e4ee0" alt="basic_NA" align="middle" width="75%" />
+<img src="https://github.com/user-attachments/assets/15ee6b15-2f52-459c-b31a-525c75be5ed7" alt="basic_NA" align="middle" width="75%" />
 
-***Fig 5.** Phylogenetic tree with missing information.*
+***Fig 5.** Phylogenetic tree without missing information.*
 
 \
 The previous tree contains several mistakes due to the missing information in `--file`. If we want to highlight the possible missing information in the generated tree we may use `--isna`.
@@ -228,7 +228,7 @@ The previous tree contains several mistakes due to the missing information in `-
 gitana.R --tree trees.file --file infoStrainsNA.tsv -l -i --bar 0.05 -y 0.3 -x -0.01 --isna --output basic_isNA.png
 ```
 
-<img src="https://github.com/user-attachments/assets/15ee6b15-2f52-459c-b31a-525c75be5ed7" alt ="basic_isNA" align="middle" width="75%" />
+<img src="https://github.com/user-attachments/assets/574582f7-da02-497e-81fc-82cf4e5e4ee0" alt ="basic_isNA" align="middle" width="75%" />
 
 ***Fig 6.** Phylogenetic tree showing **NA** at missing information.*
 
