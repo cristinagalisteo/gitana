@@ -343,7 +343,7 @@ gitana.R --tree trees.file --file infoStrains.tsv -l -i --bar 0.05 -y 0.3 -x -0.
 
 <img src="https://github.com/user-attachments/assets/e6a88175-76d0-48cd-9748-4f9de803e6a2" alt="Cclade.png" align="middle" width="75%" />
 
-***Fig 15.** Color clade related to the genus *Fodinibius*, label this node and highlight species and clade of species of interest.*
+***Fig 15.** Color clade related to the genus* Fodinibius *, label this node and highlight species and clade of species of interest.*
 
 \
 Of course, we can combine it with other functions such as `--collapse`: 
@@ -357,7 +357,7 @@ gitana.R --tree trees.file --file infoStrains.tsv -l -i --bar 0.05 -y 0.3 -x -0.
 
 
 #### **Rerooting**
-Rerooting is as simple as using the `--root` option. It creates a new tree that is ready to edit. By default, it will set equivalent branch length but it can be edited by `--position`.
+Rerooting is as simple as using the `--root` option. It creates a new tree that is ready to edit. By default, it will set equivalent branch length but it can be edited with `--position`.
 ```  
 ## Reroot first:
 gitana.R --tree trees.file --root 29
@@ -366,7 +366,8 @@ gitana.R --tree trees.file --root 29
 # rerooted__node29_0.021415.tree    # Rooted tree.
 
 ## Rerooted tree name should be save in a new file:
-ls rerooted__node29_0.021415.tree > treesReroot.file
+cat treesReroot.file
+./rerooted__node29_0.021415.tree
 
 ## Plot it as a regular tree:
 gitana.R --tree treesReroot.file --file infoStrains.tsv -l -i --bar 0.05 -y 0.3 -x -0.01 --output rerooted_maximum_likelihood_node29_0.021415.png
