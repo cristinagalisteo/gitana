@@ -291,7 +291,7 @@ gitana.R --tree trees.file --file infoStrains.tsv -l -i --bar 0.05 -y 0.3 -x -0.
 
 <img src="https://github.com/user-attachments/assets/8a5f5315-565a-4c3e-9cb2-cdb2808f9deb" alt="collapsedAnotatedScaled" align="middle" width="75%" />
 
-***Fig 11.** Node 23 has been collapsed with 'mixed' layout. The number of taxa within the collapsed node is indicated next to the node. All the taxa within the node 23 belong to genus *Gracilimonas*, thus it is labeled with the name of the genus.*
+***Fig 11.** Node 23 has been collapsed with 'mixed' layout. The number of taxa within the collapsed node is indicated next to the node. All the taxa within the node 23 belong to genus* Gracilimonas *, thus it is labeled with the name of the genus.*
 
 \
 To remove the label with number of taxa within the collapsed node, use `--hide_taxa_number`.
@@ -302,7 +302,7 @@ gitana.R --tree trees.file --file infoStrains.tsv -l -i --bar 0.05 -y 0.3 -x -0.
 
 <img src="https://github.com/user-attachments/assets/ebb9849d-76fc-4465-89a5-e3b9db9c6bef" alt="collapsedAnotatedScaledNTaxa" align="middle" width="75%" />
 
-***Fig 12.** Node 23 has been collapsed with 'mixed' layout. All the species within the node 23 belong to genus *Gracilimonas* thus, it is labeled with the name of the genus.*
+***Fig 12.** Node 23 has been collapsed with 'mixed' layout. All the species within the node 23 belong to genus* Gracilimonas *thus, it is labeled with the name of the genus.*
 
 
 #### **Color**
