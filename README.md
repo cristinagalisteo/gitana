@@ -32,7 +32,7 @@ It was built on **R version 4.4.2**.
 
 Authors recommend installation with conda: 
 ```
-conda install -c conda-forge -c bioconda r-base=4.2.2 r-ape r.ggplot2 r-ggtext r-optparse r-phytools bioconductor-ggtree
+conda install -c conda-forge -c bioconda r-base=4.2.2 r-ape r-ggplot2 r-ggtext r-optparse r-phytools bioconductor-ggtree
 # Optional: you may want to create a new environment just in case ;)
 ```
 
