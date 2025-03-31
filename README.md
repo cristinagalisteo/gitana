@@ -280,7 +280,7 @@ gitana.R --tree trees.file --file infoStrains.tsv -l -i --bar 0.05 -y 0.3 -x -0.
 
 <img src="https://github.com/user-attachments/assets/9107b51b-7715-49d0-8c25-6507f316ab39" alt="collapsedAnotated.png" align="middle" width="75%" />
 
-***Fig 10.** Node 23 has been collapsed with 'mixed' layout. The number of taxa within the collapsed node is indicated next to the node. All the taxa within the node 23 belong to the genus *Gracilimonas* thus, it is labeled with the name of that genus.*
+***Fig 10.** Node 23 has been collapsed with 'mixed' layout. The number of taxa within the collapsed node is indicated next to the node. All the taxa within the node 23 belong to the genus* Gracilimonas *thus, it is labeled with the name of that genus.*
 
 \
 Depending on the number of taxa constituting the collapsed node, it could still take up a lot of space in the tree plot. The `--scale` argument edits the height of the selected node. 
