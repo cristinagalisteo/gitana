@@ -416,7 +416,7 @@ gitana.R --tree trees.file --file infoStrains.tsv -l -i --bar 0.05 --layout slan
 
 <img src="https://github.com/user-attachments/assets/22a30741-79dd-4e19-8091-1d2bb196959e" alt="basic_slanted" align="middle" width="75%" />
 
-***Fig 19.** Phylogenetic tree with `slanted` layout.*
+***Fig 19.** Phylogenetic tree with "slanted" layout.*
 
 \
 b) Layout `circular`:
@@ -426,14 +426,14 @@ The sheet size will be set to square dimensions by default. Taxa names may not b
 ```  
 gitana.R --tree trees.file --file infoStrains.tsv -l -i --bar 0.05 --layout circular -x -0.015 -y 0.15 --xlim 0.6 --fontsize 4 --nodesize 3 --output basic_circular.png
 # --layout: select 'circular'
-# --xlim: lower values expand the tree along the x-axis. It is recommended to use bigger sizes for circular layouts.
+# --xlim: lower values expand the tree along the x-axis. It is recommended to use bigger --xlim values for circular layouts.
 # --fontsize: set a smaller font size for taxa names (by default, 6).
 # --nodesize: set a smaller font size for bootstrap (by default, 4).
 ```
 
 <img src="https://github.com/user-attachments/assets/b4ed828d-56ac-4d97-970d-1063fcdd8df7" alt="basic_circular" align="middle" width="75%" />
 
-***Fig 20.** Phylogenetic tree with `circular` layout.*
+***Fig 20.** Phylogenetic tree with "circular" layout.*
 
 \
 Circular layouts can be edited in a similar way than the rectangular layouts:
@@ -443,7 +443,7 @@ gitana.R --tree trees.file --file infoStrains.tsv -l -i --bar 0.05 --layout circ
 
 <img src="https://github.com/user-attachments/assets/4ddb62bd-73c3-4eae-90a6-f80a4d1b6258" alt="circular_Cclade.png" align="middle" width="75%" />
 
-***Fig 21.** Phylogenetic tree with `circular` layout with node 29 colored.*
+***Fig 21.** Phylogenetic tree with "circular" layout with node 29 colored.*
 
 \
 c) Layout `radial`:
@@ -560,4 +560,4 @@ ggsave("aplot.png", width = 29.7, height = 21, units = "cm", dpi= 300)
 <img src="https://github.com/user-attachments/assets/c3889389-cbaf-4997-8f1b-d81d4df51325" alt="aplot" align="middle" width="75%" />
 
 ***Fig 25.** Phylogenetic tree plotted with `gitana.R`, exported as a `Robject` and further combined with other R plot. The presence (orange) and absence (white) of genes is shown on the right side, sorted by tree topology.*
-\
+
