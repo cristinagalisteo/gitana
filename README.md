@@ -228,7 +228,7 @@ The previous tree contains several mistakes due to the missing information in `-
 gitana.R --tree trees.file --file infoStrainsNA.tsv -l -i --bar 0.05 -y 0.3 -x -0.01 --isna --output basic_isNA.png
 ```
 
-<img src="https://github.com/user-attachments/assets/a8d55093-7fa8-436a-90c1-a50a8b7ef404" alt ="basic_isNA" align="middle" width="75%" />
+<img src="https://github.com/user-attachments/assets/15ee6b15-2f52-459c-b31a-525c75be5ed7" alt ="basic_isNA" align="middle" width="75%" />
 
 ***Fig 6.** Phylogenetic tree showing **NA** at missing information.*
 
