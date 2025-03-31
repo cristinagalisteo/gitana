@@ -135,8 +135,9 @@ Files used in these examples can be found in the 'examplefiles' folder.
 We only need a file (tree1.file) with the name to the tree: 
 
 ``` 
-ls maximum_likelihood.nwk > tree1.file
-# List the selected tree file (and its path) in a file. For single trees, the list will contain a single item.
+cat tree1.file
+# ./maximum_likelihood.nwk
+# The file will contain a single item. 
 ```
 
 ```        
@@ -159,7 +160,6 @@ To transform the previous tree (**Fig 1**) into a ready-to-publish image (**Fig 
 Instead of using a single tree, we want to compare the phylogenies generated for the same dataset. They will all be listed in one file:
 
 ``` 
-ls *nwk > trees.file
 cat trees.file
 # maximum_likelihood.nwk
 # maximum_parsimony.nwk
