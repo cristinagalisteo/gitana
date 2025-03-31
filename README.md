@@ -222,7 +222,7 @@ gitana.R --tree trees.file --file infoStrainsNA.tsv -l -i --bar 0.05 -y 0.3 -x -
 ***Fig 5.** Phylogenetic tree without missing information.*
 
 \
-The previous tree contains several mistakes due to the missing information in `--file`. If we want to highlight the possible missing information in the generated tree we may use `--isna`.
+The previous tree lacks several data due to the missing information in `--file`. If we want to highlight the possible missing information in the generated tree we may use `--isna`.
 
 ```           
 gitana.R --tree trees.file --file infoStrainsNA.tsv -l -i --bar 0.05 -y 0.3 -x -0.01 --isna --output basic_isNA.png
