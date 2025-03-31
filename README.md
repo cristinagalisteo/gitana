@@ -461,12 +461,12 @@ gitana.R --tree trees.file --file infoStrains.tsv -l -i --bar 0.05 --layout radi
 
 #### **Working with big trees**
 In general, the larger the tree, the harder it is to visualize. 'gitana.R' automatically adjusts the height of sheet size depending on the number of taxa. 
-However, in some cases it may be necessary to adjust it manually. It is also recommended to set the font size smaller than the default to avoid overlapping.
+However, in some cases it may be necessary to manually adjust it. It is also recommended to set the font size smaller than the default to avoid overlapping.
 The authors recommend to fit the trees and then change position options like `--bootstrap_X`, `--bootstrap_Y`, `--offset` or `--Hclades`. 
 
 ```  
 gitana.R --tree big_tree_MP.file --file infoStrains_bigTree.tsv -l --bar 0.01 -H 85 --fontsize 3 --nodesize 2 -x -0.006 -y 0.4 --output big_tree.png 
-# -H: gitana.R selects 80 cm. However, we decided to add 5 cm for a better fit.
+# -H: gitana.R selects 80 cm by default. However, we decided to add 5 cm for a better fit.
 # --fontsize: the font size of the species names has been reduced from 5 to 3 to avoid overlapping.
 # --nodesize: similarly, the font size of the nodes and bar text has been reduced from 4 to 2.
 ```
@@ -480,9 +480,9 @@ To plot them with circular/radial layout, 'gitana.R' adjusts a 1:1 sheet size de
 
 ```  
 gitana.R --tree big_tree_MP.file --file infoStrains_bigTree.tsv -l --bar 0.01 -H 60 -W 60 --fontsize 3 --nodesize 2 -x -0.004 -y 0.4 --xlim 0.3 --output big_tree_circular.png 
-# gitana.R selected a size of 80x80 cm for the > 200 species of this tree. We selected bigger sheet size. Furthermore, we squeezed the tree to avoid white spaces in the middle using "--xlim".
-# -H: gitana.R selects 80 cm. However, we decided for a smaller sheet: 60 cm
-# -W: gitana.R selects 80 cm. However, we decided for a smaller sheet: 60 cm
+# gitana.R selected a size of 80x80 cm by default for the > 200 species of this tree. We adjusted the sheet scale to a smaller area. Furthermore, we squeezed the tree to avoid white spaces in the middle using "--xlim".
+# -H: gitana.R selects 80 cm by default. However, we decided to set a smaller height: 60 cm
+# -W: gitana.R selects 80 cm by default. However, we decided to set a smaller width: 60 cm
 # --fontsize: the fontsize of the species names has been reduced from 5 to 3 to avoid overlapping 
 # --nodesize: similarly, the font size of the nodes and bar text has been reduced from 4 to 2
 # --xlim: squeeze the tree closer to the middle as we are using values above 0
