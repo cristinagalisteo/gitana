@@ -132,7 +132,7 @@ Files used in these examples can be found in the 'examplefiles' folder.
 
 #### **Basic plot (not ready for publishing)**
 
-We only need a file (tree1.file) with the name to the tree: 
+We only need a single file (tree1.file) pointing to the tree file:  
 
 ``` 
 cat tree1.file
@@ -170,7 +170,7 @@ Since there are type strains/specimens among the species, we will select the `--
 Alse, we want a nicer topology, so we will use the `--ladderize/-l` option to give the tree a ladder-like effect.
 The `--bar` argument selects the size of the bar width.
 The `-y` and `-x` arguments will adjust the position of the bootstrap values above the nodes. As we are not adjusting the `--bootstrap_threshold/-b` argument, bootstrap values under 70% will be filtered out.
-Finally, we will specify the name of the output file as well as the file format (PNG instead of the default PDF) with the `--output/-o` argument.\
+Finally, we will specify the name of the output file as well as the file format (PNG instead of the default PDF) with the `--output/-o` argument.
 
 ```         
 gitana.R --tree trees.file --file infoStrains.tsv -l -i --bar 0.05 -y 0.3 -x -0.01 --output basic_ready.png
