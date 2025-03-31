@@ -566,5 +566,5 @@ ggsave("aplot.png", width = 29.7, height = 21, units = "cm", dpi= 300)
 
 <img src="https://github.com/user-attachments/assets/c1c0165f-4e4a-4224-a59d-3d638019396d" alt="aplot" align="middle" width="75%" />
 
-***Fig 25.** Phylogenetic tree plotted with "gitana.R", exported as a "Robject" and further combined with other R plot. The presence (orange) and absence (white) of genes is shown on the right side, sorted by tree topology.*
+***Fig 25.** Phylogenetic tree plotted with 'gitana.R', exported as a 'Robject' and further combined with other R plot. The presence (orange) and absence (white) of genes is shown on the right side, sorted by tree topology.*
 
