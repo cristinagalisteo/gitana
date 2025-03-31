@@ -22,7 +22,7 @@ for (package in requiredPackages) { # Install packages if not yet installed
 suppressMessages({
   library(ggtree)   # Visualization and annotation of phylogenetic trees, based on 'ggplot2' library.
   library(phytools) # Node comparison on phylogenetic trees.
-  library(ape)      # Plot node and OTU numeration.
+  library(ape)      # Plot node and taxa numeration.
   library(optparse) # Add arguments.
 })
 
@@ -43,7 +43,7 @@ option_list = list(
               default = FALSE,
               help="NEXUS format."
   ),
-  make_option(c("-f", "--file"),      # Info species. Required to correct edit of the OTU labels
+  make_option(c("-f", "--file"),      # Info species. Required to correct edit of the taxa labels
               action="store",
               type="character",
               default = NULL,
@@ -74,7 +74,7 @@ option_list = list(
               action="store",
               type="character",
               default = NULL,
-              help="Select a node/OTU as new root.\n\t\t\tNumber of the new node/OTU has to be indicated. It can be checked with '--noedit'.\n\t\t\tE.g.: --root 9"
+              help="Select a node/taxa as new root.\n\t\t\tNumber of the new node/taxa has to be indicated. It can be checked with '--noedit'.\n\t\t\tE.g.: --root 9"
   ),
    ### Root position
   make_option(c("--position"),
@@ -168,12 +168,12 @@ option_list = list(
               help="X and Y axes. Same uses as '--scale'."
   ),
    ### Highlight:
-   ## Color OTUs and clades:
+   ## Color taxa and clades:
   make_option(c("--Ctip"),
               action="store",
               type="character",
               default = NULL,
-              help="Color branch and name of the selected OTU(s).(It could be checked with a previous '--noedit').\n\t\t\tE.g.: --Ctip G_trop\n\t\tMultiple values separated by ','.\n\t\tCannot be used at the same time than '--Cclades'."
+              help="Color branch and name of the selected taxa.(It could be checked with a previous '--noedit').\n\t\t\tE.g.: --Ctip G_trop\n\t\tMultiple values separated by ','.\n\t\tCannot be used at the same time than '--Cclades'."
   ),
   make_option(c("--Cclades"),
               action="store",
@@ -312,7 +312,7 @@ get_df <- function(tree, data_file) {
   ## 'data_file' input must follow an specific format: 
   ## It must have 4 columns, separated by TABULATOR, and WITHOUT header:
   ##	First column. Later renamed as 'ilab'. (This tool was thought for working with results from ARB software). 
-  ##			OTUs as named on tree file. It's the name that would appear in any other tree viewers. 
+  ##			taxa as named on tree file. It's the name that would appear in any other tree viewers. 
   ##	Second column. Later renamed as 'acc'.
   ##			Accession numbers of sequences 
   ##			This tool places them in brackets. 
@@ -725,9 +725,9 @@ if (!is.null(opt$Cclades)){
 ### --Ctip (same as --Cclades)
 if (!is.null(opt$Ctip)){
   library("ggplot2")	
-  otu <- as.numeric(divide(opt$Ctip, ","))
+  taxa <- as.numeric(divide(opt$Ctip, ","))
   color <- divide(opt$color, ",")
-  tree <- groupOTU(tree, otu)
+  tree <- groupOTU(tree, taxa)
 }
 
 
