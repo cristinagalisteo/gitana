@@ -391,8 +391,8 @@ gitana.R --tree trees.file --root 29 --position 0.01
 ## Name of the new tree should be saved in 'treesRerootPosition.file': 
 cat treesRerootPosition.file    
 ./rerooted__node29_0.01.tree
-./neighbor_joining.tree
-./maximum_parsimony.tree
+./neighbor_joining.nwk
+./maximum_parsimony.nwk
 
 ## Plot it as a regular tree:
 gitana.R --tree treesRerootPosition.file --file infoStrains.tsv -l -i --bar 0.05 -y 0.3 -x -0.01 --output rerooted_maximum_likelihood_node29_0.01.png
