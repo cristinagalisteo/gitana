@@ -167,7 +167,7 @@ cat trees.file
 ```
 
 Since there are type strains/specimens among the species, we will select the `--superindex/-i` option.
-Alse, we want a nicer topology, so we will use the `--ladderize/-l` option to give the tree a ladder-like effect.
+Also, we want a nicer topology, so we will use the `--ladderize/-l` option to give the tree a ladder-like effect.
 The `--bar` argument selects the size of the bar width.
 The `-y` and `-x` arguments will adjust the position of the bootstrap values above the nodes. As we are not adjusting the `--bootstrap_threshold/-b` argument, bootstrap values under 70% will be filtered out.
 Finally, we will specify the name of the output file as well as the file format (PNG instead of the default PDF) with the `--output/-o` argument.
@@ -177,11 +177,11 @@ gitana.R --tree trees.file --file infoStrains.tsv -l -i --bar 0.05 -y 0.3 -x -0.
 # --tree: file indicanting path and name of the tree or trees to produce the final plot. All trees should harbour the same taxa dataset. 
 # --file: file with information about the species. Nomenclature, strain and accession number will be taken from this file.
 # -l: beautify the topology
-# -i: add superindex T to species in which "type" was specified in the column 5 from --file 
+# -i: add superindex T to species in which "type" was specified in the column 5 of --file 
 # --bar: select bar width instead of the automatic bar width selection
 # -y: select bootstrap position on the y-axis 
 # -x: select bootstrap position on the x-axis 
-# --output: name of the output file and select png as format
+# --output: name of the output file and selection of PNG format
 ```
 
 <img src="https://github.com/user-attachments/assets/ef742382-3ea0-4ff8-8acc-43e24f083ae1" alt = "basic" align="middle" width="75%" />
@@ -189,7 +189,7 @@ gitana.R --tree trees.file --file infoStrains.tsv -l -i --bar 0.05 -y 0.3 -x -0.
 ***Fig 2.** Ready-to-publish tree.*
 
 We have a really nice basic plot ready to publish! Species names were perfectly edited and <sup>T</sup> added to the strain names. 
-Bootstrap values below 70% have been filtered out and the percentage has been placed next to the nodes. 
+Bootstrap values below 70% have been filtered out and the percentages have been placed next to the nodes. 
 Filled circles indicate common nodes for the input trees.
 
 However, we may want to keep the original topology. In that case, we remove the `--ladderize/-l` option:
@@ -205,14 +205,14 @@ gitana.R --tree trees.file --file infoStrains.tsv -i --bar 0.05 -y 0.3 -x -0.01 
 Or, we may want to plot all the bootstrap values instead of those above a certain threshold: 
 ```           
 gitana.R --tree trees.file --file infoStrains.tsv -l -i --bar 0.05 -y 0.3 -x -0.01 -b 0 --output basic_b0.png
--b 0: all bootstrap values will be displayed.
+# -b 0: all bootstrap values will be displayed.
 ```
 <img src="https://github.com/user-attachments/assets/4c53cc12-9dbe-49cb-8ffc-705c02be43cb" alt="basic_b0.png" align="middle" width="75%" />
 
 ***Fig 4.** Phylogenetic tree with all bootstrap values above the nodes.*
 
 \
-We can exclude some of the taxa information such as some accession numbers or even taxa names. By default, the tree will be plotted with this missing information:
+We can exclude some of the taxa information such as some accession numbers or even taxa names. By default, the tree will be plotted without this missing information:
 ```           
 gitana.R --tree trees.file --file infoStrainsNA.tsv -l -i --bar 0.05 -y 0.3 -x -0.01 --output basic_NA.png
 ```
