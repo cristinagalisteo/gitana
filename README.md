@@ -56,7 +56,7 @@ cat trees.file
 ./neighbor_joining.nwk
 ```  
 
--   A **tab separated file (no headers)** that includes species information. Optional, but recommended for plotting ready-to-publish trees.\
+-   A **tab separated file (no headers)** that includes species information. Optional, but recommended for plotting ready-to-publish trees.
     -   Column 1: Tip labels from raw tree.
     -   Column 2: Accession number of the sequences.
     -   Column 3: Scientific name. Space bars are allowed. Everything in this column will be plotted in italics.
