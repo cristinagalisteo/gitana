@@ -512,7 +512,7 @@ The `RDS` object can be loaded in a new R script:
 load("gitana.rds") # Plotted tree is saved in a variable called 'tr'.
 
 # Table with extra data:
-set.seed(19)
+set.seed(19) # We select a seed for reproducibility of the results.
 df <- data.frame(taxa = tr$data$label[1:18], 
                  genA = round(runif(n=18, min=0, max=1), 0), 
                  genB = round(runif(n=18, min=0, max=1), 0), 
