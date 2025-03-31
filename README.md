@@ -161,9 +161,9 @@ Instead of using a single tree, we want to compare the phylogenies generated for
 
 ``` 
 cat trees.file
-# maximum_likelihood.nwk
-# maximum_parsimony.nwk
-# neighbor_joining.nwk
+./maximum_likelihood.nwk
+./maximum_parsimony.nwk
+./neighbor_joining.nwk
 ```
 
 Since there are type strains/specimens among the species, we will select the `--superindex/-i` option.
