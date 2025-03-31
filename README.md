@@ -511,16 +511,23 @@ The `RDS` object can be loaded in a new R script:
 # Load 'gitana.R' results: 
 load("gitana.rds") # Plotted tree is saved in a variable called 'tr'.
 
-# Read table with extra data:
-df <- read.table("gene_presence.tsv", sep="\t", header =T)
+# Table with extra data:
+set.seed(19)
+df <- data.frame(otu = tr$data$label[1:18], 
+                 genA = round(runif(n=18, min=0, max=1), 0), 
+                 genB = round(runif(n=18, min=0, max=1), 0), 
+                 genC = round(runif(n=18, min=0, max=1), 0), 
+                 genD = round(runif(n=18, min=0, max=1), 0),
+                 genE = round(runif(n=18, min=0, max=1), 0),
+                 genF = round(runif(n=18, min=0, max=1), 0))
 head(df)
-#        taxa genA genB genC genD genE genF
-# 1 I37Mengy    1    1    1    0    1    0
-# 2 I37Rosea    0    0    0    0    0    1
-# 3 I37Spec4    0    0    1    0    0    1
-# 4   G_trop    1    1    1    0    0    1
-# 5 KU987442    1    0    1    1    0    0
-# 6   B_vulg    0    0    0    0    1    0
+#       otu genA genB genC genD genE genF
+# 1 I37Mengy    0    0    1    1    1    0
+# 2 I37Rosea    0    1    1    0    1    1
+# 3 I37Spec4    1    1    0    0    0    1
+# 4   G_trop    0    1    0    1    0    0
+# 5 KU987442    0    1    1    1    0    1
+# 6   B_vulg    0    1    0    0    0    1
 
 # Prepare data:               
 mdf <- reshape::melt(df)
@@ -557,7 +564,7 @@ hmap %>% aplot::insert_left(tr, width = 2)
 ggsave("aplot.png", width = 29.7, height = 21, units = "cm", dpi= 300)  
 ```
 
-<img src="https://github.com/user-attachments/assets/c3889389-cbaf-4997-8f1b-d81d4df51325" alt="aplot" align="middle" width="75%" />
+<img src="https://github.com/user-attachments/assets/c1c0165f-4e4a-4224-a59d-3d638019396d" alt="aplot" align="middle" width="75%" />
 
 ***Fig 25.** Phylogenetic tree plotted with "gitana.R", exported as a "Robject" and further combined with other R plot. The presence (orange) and absence (white) of genes is shown on the right side, sorted by tree topology.*
 
