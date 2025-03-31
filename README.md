@@ -513,7 +513,7 @@ load("gitana.rds") # Plotted tree is saved in a variable called 'tr'.
 
 # Table with extra data:
 set.seed(19)
-df <- data.frame(otu = tr$data$label[1:18], 
+df <- data.frame(taxa = tr$data$label[1:18], 
                  genA = round(runif(n=18, min=0, max=1), 0), 
                  genB = round(runif(n=18, min=0, max=1), 0), 
                  genC = round(runif(n=18, min=0, max=1), 0), 
@@ -521,7 +521,7 @@ df <- data.frame(otu = tr$data$label[1:18],
                  genE = round(runif(n=18, min=0, max=1), 0),
                  genF = round(runif(n=18, min=0, max=1), 0))
 head(df)
-#       otu genA genB genC genD genE genF
+#       taxa genA genB genC genD genE genF
 # 1 I37Mengy    0    0    1    1    1    0
 # 2 I37Rosea    0    1    1    0    1    1
 # 3 I37Spec4    1    1    0    0    0    1
