@@ -509,7 +509,7 @@ load("gitana.rds") # Plotted tree is saved in a variable called 'tr'.
 # Read table with extra data:
 df <- read.table("gene_presence.tsv", sep="\t", header =T)
 head(df)
-#        otu genA genB genC genD genE genF
+#        taxa genA genB genC genD genE genF
 # 1 I37Mengy    1    1    1    0    1    0
 # 2 I37Rosea    0    0    0    0    0    1
 # 3 I37Spec4    0    0    1    0    0    1
@@ -523,7 +523,7 @@ mdf$value <- as.character(mdf$value)
 
 # Plot heatmap:
 library(ggplot2)
-hmap <- ggplot(mdf, aes(x=variable, y=otu, fill=value)) + 
+hmap <- ggplot(mdf, aes(x=variable, y=taxa, fill=value)) + 
   geom_tile(color="black") + coord_fixed() + 
   theme(
     legend.position="none", 
@@ -546,7 +546,7 @@ tr <- tr + geom_treescale(x = 0, y = 15, width = 0.05)
 tr <- tr + xlim(0,1.2)
 
 # Plot our new heatmap with the tree in the left side.
-# The library 'aplot' sort heatmap to match the OTU order of the tree.
+# The library 'aplot' sort heatmap to match the taxa order of the tree.
 hmap %>% aplot::insert_left(tr, width = 2) 
 
 ggsave("aplot.png", width = 29.7, height = 21, units = "cm", dpi= 300)  
