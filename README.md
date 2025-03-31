@@ -50,9 +50,10 @@ The input file will list the single or multiple trees.
 
 Example:
 ```  
-./examplefiles/maximum_likelihood.nwk
-./examplefiles/maximum_parsimony.nwk
-./examplefiles/neighbor_joining.nwk
+cat trees.file
+./maximum_likelihood.nwk
+./maximum_parsimony.nwk
+./neighbor_joining.nwk
 ```  
 
 -   A **tab separated file (no headers)** that includes species information. Optional, but recommended for plotting ready-to-publish trees.\
@@ -83,7 +84,7 @@ Example:
 
 ## Arguments
 
--   **`-t/--tree`**: File listing phylogenetic tree file names. Trees should have been previously inferred with tools such as 
+-   **`-t/--tree`**: File listing the location of the input phylogenetic tree file. Trees should have been previously inferred with tools such as 
 [PHYLIP](https://phylipweb.github.io/phylip/), [FastTree](http://www.microbesonline.org/fasttree/),
 [BEAST](https://beast.community), 
 [MrBayes](https://nbisweden.github.io/MrBayes/),
@@ -101,7 +102,7 @@ Example:
 -   **`--layout`**: Plot design. Options: `rectangular` (*default*) \| `slanted` \| `circular` \| `radial`.
 -   **`-l/--ladderize`**: Get ladderize effect for the tree. Note that this option is not compatible with `--rotate`. Default: `FALSE`.
 -   **`--bootstrap_percentage`**: Change bootstrap values to percentage. The original scale must be indicated: `1` \| `1000`.
--   **`-b/--bootstrap_threshold`**: Bootstrap below the selected values will not be displayed. Default: `70`.
+-   **`-b/--bootstrap_threshold`**: Bootstrap below the selected threshold will not be displayed. Default: `70`.
 -   **`--root`**: Select a node/species as new root. Numeration can be checked with `--noedit`.
 -   **`--position`**: Numeric value for position along the target edge at which to reroot the tree. By default, it will be set at middle branch. E.g., `--position 0.02`.
 -   **`--unroot`**: Unroot a rooted tree.
@@ -112,7 +113,7 @@ Example:
 -   **`--Cclades`**: Color clade and its branch. To color multiple clades and branches use ',' as separator. Choose color with `--color`. E.g., `--Cclades 35` or `--Cclades 35,40` 
 -   **`--color`**: Color clade/species selected with `--Ctip/--Cclades`. E.g., `--color blue` or `--color green,pink`
 -   **`--Hclades`**: Highlight clade. Select node, color and extension separated by ','. To highlight multiple clades use ':' as separator. E.g., `--Hclades 35,pink,0.01` or `--Hclades 35,pink,0.01:40,green,0.015` 
--   **`--Bclades`**: Add labels. Select node and add label, separated by ','. To add multiple labels use ':' as separator. E.g., `--Bclades 35,Group1` or `--Bclades 35,Group1:40,'Group of interest'`
+-   **`--Bclades`**: Add labels to clade. Select node and add label, separated by ','. To add multiple labels use ':' as separator. E.g., `--Bclades 35,Group1` or `--Bclades 35,Group1:40,'Group of interest'`
 -   **`--offset`**: Set position of `--Bclades` label. E.g., `--offset 0.012`
 -   **`--fontsize`**: Font size for tip labels. Default: `6`.
 -   **`--nodesize`**: Font size for node (bootstrap) and bar labels. Default: `5`.
