@@ -296,7 +296,7 @@ gitana.R --tree trees.file --file infoStrains.tsv -l -i --bar 0.05 -y 0.3 -x -0.
 \
 To remove the label with number of taxa within the collapsed node, use `--hide_taxa_number`.
 ``` 
-gitana.R --tree trees.file --file infoStrains.tsv -l -i --bar 0.05 -y 0.3 -x -0.01 --collapse 23,mixed --scale 23,0.5 --Bclade 23,Gracilimonas,#FF6347,bold.italic --offset 0.04 --hide_taxa_number --output collapsedAnotatedScaledNtaxa.png
+gitana.R --tree trees.file --file infoStrains.tsv -l -i --bar 0.05 -y 0.3 -x -0.01 --collapse 23,mixed --Bclade 23,Gracilimonas,#FF6347,bold.italic --offset 0.04 --scale 23,0.5 --hide_taxa_number --output collapsedAnotatedScaledNtaxa.png
 # --hide_taxa_number: remove the text label indicating the number of taxa within the node 23.
 ```
 
