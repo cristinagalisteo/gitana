@@ -13,6 +13,8 @@ Multitude of useful functionalities are offered, such as rerooting or unrooting 
 
 'gitana' is based on the most popular R libraries for phylogeny ('ape', 'ggtree', 'phytools') and combines them to create an interactive R script ('gitana.R') with large selection of optional arguments that allows the imaging of very simple but good looking trees to others more sophisticated.
 
+**Check our paper:** Galisteo, C., de la Haba, R.R. ‘gitana’ (phyloGenetic Imaging Tool for Adjusting Nodes and other Arrangements), a tool for plotting phylogenetic trees into ready-to-publish figures. BMC Bioinformatics 26, 154 (2025). https://doi.org/10.1186/s12859-025-06178-1
+
 ## Installation and R packages
 
 'gitana.R' runs in **Linux/Windows/Mac** systems where R software (https://cran.r-project.org) and the following R packages must be previously installed.
@@ -567,4 +569,3 @@ ggsave("aplot.png", width = 29.7, height = 21, units = "cm", dpi= 300)
 <img src="https://github.com/user-attachments/assets/c1c0165f-4e4a-4224-a59d-3d638019396d" alt="aplot" align="middle" width="75%" />
 
 ***Fig 25.** Phylogenetic tree plotted with 'gitana.R', exported as a 'Robject' and further combined with other R plot. The presence (orange) and absence (white) of genes is shown on the right side, sorted by tree topology.*
-
