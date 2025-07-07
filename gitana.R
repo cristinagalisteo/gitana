@@ -2,8 +2,8 @@
 # -*-coding: utf-8 -*-
 
 # @autor: Cristina Galisteo
-# @Date: 2024
-# @Version: p0.1
+# @Date: 2025-07-07
+# @Version: p0.2
 
 ############### LIBRARIES ############### 
 requiredPackages <- c("ggtree","phytools", "ape", "optparse", "ggtext", "ggplot2")
@@ -436,6 +436,7 @@ get_df_circular <- function(tree, data_file) {
 ###### SHARED NODES
 shared_nodes <- function(mylistoftrees) {
   tree <- mylistoftrees[[1]]
+  if(is.null(tree$node.label)){tree$node.label <- rep ("0", tree$Nnode)}
   nodos_todos <- tree$node.label 
   
   # Compare base tree (tree) with the other two, separately, using 'matchNodes' function from 'phytools' library. 
@@ -459,7 +460,7 @@ shared_nodes <- function(mylistoftrees) {
   }
   
   posicion_nodos <- posiciones[[1]] # Tree2
-  if (length(mylistoftrees) >= 2){ # If there are 2 or more trees:
+  if (length(mylistoftrees) > 2){ # If there are 2 or more trees:
     for (n in 2:length(posiciones)){
       posicion_nodos <- intersect(posicion_nodos, posiciones[[n]])
     }
@@ -476,7 +477,7 @@ shared_nodes <- function(mylistoftrees) {
   # A new vector is created to stock all the shared position values that must be marked on the plot. It has the same length than the original one. 
   # Non shared positions have 'NA' value. 
   # Shared positions are replaced with the value from 'nodos_nodos'. 
-  nodos_punto <- rep(NA,length(tree$node.label))
+  nodos_punto <- rep(NA,(tree$Nnode))
   for (r in posicion_nodos) { 	
     nodos_punto[r] <- nodos_todos[r]
   }
@@ -592,6 +593,12 @@ tree <- treelist[[1]] # 'phylo' object
 
 # Print info #
 cat("...Input tree 1: ", mytrees[1], "\n", sep = "")
+cat("......", length(treelist[[1]]$tip.label), " tips and ", treelist[[1]]$Nnode, " nodes.\n", sep = "")
+## Check if there are node labels in the file.
+if(is.null(tree$node.label)){
+  cat("It is null\n")
+  tree$node.label <- rep ("0", tree$Nnode)
+}
 nodes <- tree$node.label # Save node values in a different vector for later. 
 
 # If '--noedit' is called, it is executed and the script shuts down. 
@@ -636,6 +643,7 @@ if (length(mytrees) >= 2){
     }
     
     cat("...Input tree ", n, ": ", mytrees[n], "\n", sep = "")
+    cat("......", length(treelist[[n]]$tip.label), " tips and ", treelist[[n]]$Nnode, " nodes.\n", sep = "")
   }
 }
 
@@ -663,6 +671,7 @@ if (!is.null(opt$file) & (opt$layout %in% c("rectangular", "slanted") )) {
 # For two or more trees.
 if (length(mytrees) >= 2){
   nodos_punto <- shared_nodes(treelist)
+  cat("......Shared nodes checked\n")
 }
 
 ##### BOOTSTRAP ##### 
@@ -740,6 +749,7 @@ if (!is.null(opt$Cclades) | !is.null(opt$Ctip)){
 } else {
   tr <- ggtree(tree, layout = opt$layout, ladderize = opt$ladderize)
 }
+cat("......Print layout\n")
 
 ### Tip labels:
 ## Add edited labels from the file inserted as an argument
@@ -750,11 +760,14 @@ if (!is.null(opt$file)){
   ## Or just print the labels from the .tree
   tr <- tr + geom_tiplab(size = opt$fontsize)
 }
+cat("......Print labels\n")
 
 ### Shared nodes: 
 ## Insert layer with previous obtained shared nodes. Only for working with more than one tree file. 
 ## Shared nodes were saved on 'nodos_puntos'. Original nodes were saved on 'nodes'.
-if (length(treelist) >= 2) {tr <- tr + geom_nodepoint(aes(subset=(nodos_punto %in% nodes)))}
+if (length(treelist) >= 2) {tr <- tr + geom_nodepoint(aes(subset=(nodos_punto %in% nodes)))
+cat("......Print nodes\n")}
+
 
 ### Bar scale: 
 ## Add bar scale to the bottom left:
